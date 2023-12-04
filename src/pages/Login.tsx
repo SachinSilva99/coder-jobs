@@ -2,7 +2,7 @@ import loginimg from "../assets/loginimg.png";
 const Login = () => {
   return (
     <div className="flex w-full h-screen">
-      <div className="left w-1/2 flex flex-col items-start justify-start min-w-400">
+      <div className="left md:w-1/2 flex flex-col items-start justify-start min-w-400 sm:w-screen">
         <h1 className="p-7">Coder Jobs</h1>
         <div className="flex items-center justify-center  w-full h-full">
           <div className=" flex items-start flex-col w-9/12	h-2/3">
@@ -40,7 +40,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="right  bg-test w-1/2 min-w-400 rounded-xl	m-6">
+      <div className="hidden right bg-test w-1/2 min-w-400 rounded-xl m-6 md:block">
         <p className="text-white self-end text-end p-4">+94 0116 789 754</p>
         <div className="flex  flex-col items-center justify-center">
           <img src={loginimg} />
