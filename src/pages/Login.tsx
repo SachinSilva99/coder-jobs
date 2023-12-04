@@ -1,4 +1,6 @@
 import loginimg from "../assets/loginimg.png";
+import emailIcon from "../assets/email.png";
+import passwordIcon from "../assets/password.png";
 const Login = () => {
   return (
     <div className="flex w-full h-screen">
@@ -14,23 +16,36 @@ const Login = () => {
             <label className="mt-6" htmlFor="email">
               Email
             </label>
-            <input
-              className="border-b-2 outline-none  mt-1 focus:border-blue-300 w-full"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Enter your email address"
-            />
+            <div className="relative w-full">
+              <img className="absolute m-2" src={emailIcon} alt="email icon" />
+              <input
+                className="pl-10 border-b-2 outline-none  mt-1 focus:border-blue-300 w-full"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Enter your email address"
+              />
+            </div>
+
             <label className="mt-6" htmlFor="password">
               Password
             </label>
-            <input
-              className="focus:border-blue-300 border-b-2 outline-none mt-1 w-full"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter your password"
-            />
+            <div className="relative w-full">
+              <img
+                className="absolute m-2"
+                src={passwordIcon}
+                alt="password icon"
+              />
+
+              <input
+                className="pl-10 focus:border-blue-300 border-b-2 outline-none mt-1 w-full"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+              />
+            </div>
+
             <a className="self-end text-zinc-600" href="#">
               Forgot password?
             </a>
@@ -41,7 +56,7 @@ const Login = () => {
         </div>
       </div>
       <div className="hidden right bg-test w-1/2 min-w-400 rounded-xl m-6 md:block">
-        <p className="text-white self-end text-end p-4">+94 0116 789 754</p>
+        <p className="text-white self-end text-end p-4">+94 8364 473 862</p>
         <div className="flex  flex-col items-center justify-center">
           <img src={loginimg} />
           <h1 className="text-white text-xl font-semibold">
