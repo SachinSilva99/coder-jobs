@@ -1,6 +1,7 @@
 import loginimg from "../assets/loginimg.png";
 import emailIcon from "../assets/email.png";
 import passwordIcon from "../assets/password.png";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="flex w-full h-screen">
@@ -12,9 +13,9 @@ const Login = () => {
             <p>If you don't have an account register</p>
             <p>
               You can{" "}
-              <a href="#">
-                <span className="text-blue-900">Register here!</span>
-              </a>
+              <Link to="/register" className="text-blue-900">
+                Register here!
+              </Link>
             </p>
             <label className="mt-6" htmlFor="email">
               Email

@@ -2,8 +2,9 @@ import loginimg from "../assets/loginimg.png";
 import emailIcon from "../assets/email.png";
 import passwordIcon from "../assets/password.png";
 import userIcon from "../assets/user.png";
+import {Link} from "react-router-dom";
 
-export const Register = () => {
+const Register = () => {
   return (
     <div className="flex w-full h-screen">
       <div className="left md:w-1/2 flex flex-col items-start justify-start min-w-400 sm:w-screen">
@@ -14,9 +15,9 @@ export const Register = () => {
             <p>If you already have an account register</p>
             <p>
               You can{" "}
-              <a href="#">
+              <Link to="/login">
                 <span className="text-blue-900">Login here!</span>
-              </a>
+              </Link>
             </p>
             <label className="mt-6" htmlFor="email">
               Email
@@ -95,9 +96,9 @@ export const Register = () => {
               />
             </div>
 
-            <a className="self-end text-zinc-600" href="#">
+            <Link className="self-end text-zinc-600" to="/#">
               Forgot password?
-            </a>
+            </Link>
             <button className="bg-blue-900 w-full p-4 text-white rounded-full mt-6">
               Register
             </button>
@@ -107,7 +108,7 @@ export const Register = () => {
       <div className="hidden right bg-test w-1/2 min-w-400 rounded-xl m-6 md:block">
         <p className="text-white self-end text-end p-4">+94 8364 473 862</p>
         <div className="flex  flex-col items-center justify-center">
-          <img src={loginimg} loading="lazy" />
+          <img src={loginimg} loading="lazy" alt={loginimg}/>
           <h1 className="text-white text-xl font-semibold">
             Sign in to Coder Jobs
           </h1>
@@ -117,3 +118,4 @@ export const Register = () => {
     </div>
   );
 };
+export default Register;
