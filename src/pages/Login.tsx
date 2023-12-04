@@ -11,13 +11,21 @@ const Login = () => {
             <h1 className="font-bold mb-5">Sign in</h1>
             <p>If you don't have an account register</p>
             <p>
-              You can <span className="text-blue-900">Register here !</span>
+              You can{" "}
+              <a href="#">
+                <span className="text-blue-900">Register here!</span>
+              </a>
             </p>
             <label className="mt-6" htmlFor="email">
               Email
             </label>
             <div className="relative w-full">
-              <img className="absolute m-2" src={emailIcon} alt="email icon" />
+              <img
+                className="absolute m-2"
+                src={emailIcon}
+                alt="email icon"
+                loading="lazy"
+              />
               <input
                 className="pl-10 border-b-2 outline-none  mt-1 focus:border-blue-300 w-full"
                 type="text"
@@ -35,6 +43,7 @@ const Login = () => {
                 className="absolute m-2"
                 src={passwordIcon}
                 alt="password icon"
+                loading="lazy"
               />
 
               <input
@@ -49,7 +58,7 @@ const Login = () => {
             <a className="self-end text-zinc-600" href="#">
               Forgot password?
             </a>
-            <button className="bg-blue-900 w-full p-4 text-white rounded-full mt-6">
+            <button className="bg-blue-900 w-full p-4 text-white rounded-full mt-2">
               Login
             </button>
           </div>
@@ -58,11 +67,11 @@ const Login = () => {
       <div className="hidden right bg-test w-1/2 min-w-400 rounded-xl m-6 md:block">
         <p className="text-white self-end text-end p-4">+94 8364 473 862</p>
         <div className="flex  flex-col items-center justify-center">
-          <img src={loginimg} />
+          <img src={loginimg} loading="lazy" />
           <h1 className="text-white text-xl font-semibold">
             Sign in to Coder Jobs
           </h1>
-          <h3 className="text-white text-xs">Find your jon sooner</h3>
+          <h3 className="text-white text-xs">Find your job/employee sooner</h3>
         </div>
       </div>
     </div>
