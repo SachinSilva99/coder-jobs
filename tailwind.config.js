@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         test: "#000842",
+        btnBlue: '#149BFC'
       },
       minWidth: {
         400: "400px",

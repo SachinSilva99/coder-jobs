@@ -48,7 +48,7 @@ const Login = () => {
               />
 
               <input
-                className="pl-10 focus:border-blue-300 border-b-2 outline-none mt-1 w-full"
+                className="pl-10 focus:border-blue-300 border-b-2 outline-none m-3 w-full"
                 type="password"
                 name="password"
                 id="password"

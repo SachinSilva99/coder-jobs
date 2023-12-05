@@ -11,21 +11,25 @@ const router = createBrowserRouter([
     path: "/",
     element: <Login/>,
   },
+
   {
     path: "/login",
     element: <Login/>,
   },
+
   {
     path: "/register",
     element: <Register/>,
   },
+
   {
-    path: "/home/*", // Match any path starting with "/home"
+    path: "/home/*",
     element: <Home/>,
     children: [
       {
         path: "test1",
         element: <Test1/>,
+
       },
       {
         path: "test2",

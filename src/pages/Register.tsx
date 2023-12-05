@@ -5,6 +5,7 @@ import userIcon from "../assets/user.png";
 import {Link} from "react-router-dom";
 
 const Register = () => {
+
   return (
     <div className="flex w-full h-screen">
       <div className="left md:w-1/2 flex flex-col items-start justify-start min-w-400 sm:w-screen">

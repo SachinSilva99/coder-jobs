@@ -1,16 +1,15 @@
-import {Link, Outlet,} from "react-router-dom";
-
+import Navbar from "../components/Navbar.tsx";
 
 const Home = () => {
   return (
-    <div>
-       <ul>
-         <Link to="/home/test1">test1</Link>
-         <Link to="/home/test2">test2</Link>
-       </ul>
-
-      <Outlet />
-    </div>
+    <>
+      <Navbar/>
+      <p className="text-3xl ml-10">
+        Discover your ideal job <br/>
+        or allow employers <br/>
+        to discover you. <br/>
+      </p>
+    </>
   );
 };
 
