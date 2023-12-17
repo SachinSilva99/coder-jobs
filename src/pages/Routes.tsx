@@ -1,19 +1,14 @@
 import {createBrowserRouter} from "react-router-dom";
-import Login from "./Login.tsx";
-import Register from "./Register.tsx";
-import Error from "./Error.tsx";
-import Home from "./Home.tsx";
+import Login from "./login/Login.tsx";
+import Register from "./register/Register.tsx";
+import Error from "./error/Error.tsx";
+import Home from "./home/Home.tsx";
 import Test1 from "./Test1.tsx";
 import Test2 from "./Test2.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Login/>,
-  },
-
-  {
-    path: "/login",
+    path: "/Login",
     element: <Login/>,
   },
 
@@ -23,7 +18,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/home/*",
+    path: "/*",
     element: <Home/>,
     children: [
       {
