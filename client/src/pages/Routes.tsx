@@ -3,8 +3,8 @@ import Login from "./login/Login.tsx";
 import Register from "./register/Register.tsx";
 import Error from "./error/Error.tsx";
 import Home from "./home/Home.tsx";
-import Test1 from "./Test1.tsx";
-import Test2 from "./Test2.tsx";
+import HeroSection from "../components/layout/HeroSection.tsx";
+import ApplyJob from "./home/apply/ApplyJob.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,13 +22,13 @@ const router = createBrowserRouter([
     element: <Home/>,
     children: [
       {
-        path: "test1",
-        element: <Test1/>,
+        path: "apply",
+        element: <ApplyJob/>,
 
       },
       {
-        path: "test2",
-        element: <Test2/>,
+        path: "",
+        element: <HeroSection/>,
       }]
   },
   {
