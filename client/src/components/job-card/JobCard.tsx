@@ -4,8 +4,9 @@ import {SiHashnode} from "react-icons/si";
 
 const JobCard = () => {
   return (
-    <div className='border-2 border-slate-300'>
-      <div className=' p-4 flex lg:flex-row gap-2 flex-col  rounded-md'>
+    <div
+      className='border border-slate-300 rounded-lg transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105  duration-300'>
+      <div className='p-4 flex lg:flex-row gap-2 flex-col  rounded-md'>
         <div>
           <div className='flex justify-between  items-center'>
             <h1 className='xl font-semibold'>
@@ -27,8 +28,9 @@ const JobCard = () => {
         </div>
         {/*button and icons*/}
         <div className='flex flex-col md:flex-row  md:justify-between flex-1 md:items-center py-3 px-2 gap-4'>
-          <div className='flex flex-wrap  flex-row lg:justify-center lg:items-center flex-1 gap-8 '>
-            <div className='flex gap-3 items-center'>
+          <div
+            className='flex flex-wrap flex-row md:flex-col lg:justify-center lg:items-center flex-1 md:gap-4 text-xs md:text-sm gap-4 '>
+            <div className='flex gap-3 items-center '>
               <FaSuitcase/>
               <p className='inline'>Full Time</p>
             </div>
@@ -41,12 +43,13 @@ const JobCard = () => {
               <p><span>Rs : </span>300k</p>
             </div>
           </div>
-          <button className='w-48 bg-emerald-600 text-white px-6 py-3 rounded-lg'>Apply</button>
+          <button className='w-28 md:w-48 md:px-6 md:py-3 text-sm bg-emerald-600 text-white px-2 py-2 rounded-lg '>
+            Apply
+          </button>
         </div>
       </div>
-      <p className='text-right  pr-8 pb-2 text-slate-400'>10 mins ago</p>
+      <p className='text-right text-sm md:text-md  pr-8 pb-2 text-slate-400'>10 mins ago</p>
     </div>
-
   );
 };
 

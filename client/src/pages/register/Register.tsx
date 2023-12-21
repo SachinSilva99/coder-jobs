@@ -6,11 +6,10 @@ import {Link} from "react-router-dom";
 import Input from "../../components/input/Input.tsx";
 
 const Register = () => {
-
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex">
       <div className="left md:w-1/2 flex flex-col items-start justify-start min-w-400 sm:w-screen">
-        <h1 className="p-7">Coder Jobs</h1>
+        <h1 className="p-7">Job Seeker</h1>
         <div className="flex items-center justify-center  w-full h-full">
           <div className=" flex items-start flex-col w-9/12	">
             <h1 className="font-bold mb-5">Sign up</h1>
@@ -22,13 +21,16 @@ const Register = () => {
               </Link>
             </p>
             <Input name={'email'} label={'Email'} type={'email'} placeholder={'Enter your username'} icon={emailIcon}/>
-            <Input name={'username'} label={'Username'} type={'username'} placeholder={'Enter your username'} icon={userIcon}/>
-            <Input name={'password'} label={'Password'} type={'password'}  placeholder={'Enter your password'} icon={passwordIcon}/>
-            <Input name={'confirmPassword'} label={'Confirm Password'} type={'confirmPassword'} placeholder={'Confirm your password'} icon={passwordIcon}/>
+            <Input name={'username'} label={'Username'} type={'username'} placeholder={'Enter your username'}
+                   icon={userIcon}/>
+            <Input name={'password'} label={'Password'} type={'password'} placeholder={'Enter your password'}
+                   icon={passwordIcon}/>
+            <Input name={'confirmPassword'} label={'Confirm Password'} type={'confirmPassword'}
+                   placeholder={'Confirm your password'} icon={passwordIcon}/>
             <Link className="self-end text-zinc-600" to="/#">
               Forgot password?
             </Link>
-            <button className="bg-blue-900 w-full p-4 text-white rounded-full mt-6">
+            <button className="bg-blue-900 w-full p-4 text-white rounded-full m-6">
               Register
             </button>
           </div>

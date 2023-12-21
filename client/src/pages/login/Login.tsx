@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className="flex w-full h-screen">
       <div className="left md:w-1/2 flex flex-col items-start justify-start min-w-400 sm:w-screen">
-        <h1 className="p-7">Coder Jobs</h1>
+        <h1 className="p-7">Job Seeker</h1>
         <div className="flex items-center justify-center  w-full h-full">
           <LoginForm/>
         </div>
@@ -16,7 +16,7 @@ const Login = () => {
         <div className="flex  flex-col items-center justify-center">
           <img src={loginimg} loading="lazy"/>
           <h1 className="text-white text-xl font-semibold">
-            Sign in to Coder Jobs
+            Sign in to Job Seeker
           </h1>
           <h3 className="text-white text-xs">Find your job/employee sooner</h3>
         </div>

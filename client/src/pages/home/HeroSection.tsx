@@ -1,5 +1,5 @@
 import {FaFilter, FaSearch} from "react-icons/fa";
-import JobCard from "../job-card/JobCard.tsx";
+import JobCard from "../../components/job-card/JobCard.tsx";
 
 const HeroSection = () => {
   return (
@@ -7,17 +7,17 @@ const HeroSection = () => {
       <p className="text-lg mt-8 mb-4">
         Find your job now!
       </p>
-      <div
-        className='border-0 md:border-2 border-slate-300 flex
-        flex-col md:flex-row gap-2 md:items-center justify-center  md:justify-between rounded-lg'>
+      {/*search bar container*/}
+      <div className='border-0 md:border-2 border-slate-300 flex
+        flex-col md:flex-row gap-2 md:items-center justify-center  md:justify-between rounded-lg  mb-12 '>
         {/*search bar*/}
-        <div className='flex gap-2'>
-          <div className="relative mx-4">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <div className='flex gap-2  justify-between'>
+          <div className="flex  items-center">
+              <span className="absolute">
                 <FaSearch color={'#CDC7C7'}/>
               </span>
             <input
-              className='pl-8 border-b-2 border-slate-300 min-w-[250px] lg:w-[300px] focus:outline-none'
+              className='pl-8 border-b-2 border-slate-300 w-[250px] focus:outline-none'
               type="text"
               placeholder='Search job title or keywords'
             />
@@ -27,7 +27,7 @@ const HeroSection = () => {
           </div>
         </div>
         {/*filters*/}
-        <div className={'gap-4 hidden items-center justify-center xl:flex mt-6'}>
+        <div className={'gap-10 hidden items-center justify-center xl:flex mt-6'}>
           <div>
             <select id="jobType"
                     className="block w-full p-2 mb-6 text-sm focus:outline-none border-b-2 border-slate-300">

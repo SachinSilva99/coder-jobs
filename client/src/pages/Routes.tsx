@@ -3,7 +3,7 @@ import Login from "./login/Login.tsx";
 import Register from "./register/Register.tsx";
 import Error from "./error/Error.tsx";
 import Home from "./home/Home.tsx";
-import HeroSection from "../components/layout/HeroSection.tsx";
+import HeroSection from "./home/HeroSection.tsx";
 import ApplyJob from "./home/apply/ApplyJob.tsx";
 
 const router = createBrowserRouter([
