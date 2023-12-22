@@ -10,6 +10,10 @@ export default {
       minWidth: {
         400: "400px",
       },
+      customHoverBorder: {
+        base: 'border-2 border-transparent',
+        hover: 'hover:border-b-2 hover:border-b-slate-800',
+      },
     },
   },
 

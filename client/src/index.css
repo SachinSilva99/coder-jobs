@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .custom-nav-hover {
+        @apply hover:border-b-2 hover:border-b-slate-800 border-2 border-transparent hover:duration-700;
+    }
+}
+
 @layer no-tailwindcss {
     /* This layer is disabled */
     @variants {
@@ -15,15 +21,15 @@
 
 body {
     font-family: "Poppins", sans-serif;
-/*    padding: 0 50px;
-    @media (max-width: 767px) {
-        padding: 0 10px;
-    }
-    @media (min-width: 768px) {
-        padding: 0 50px;
-    }
-    @media (min-width: 1024px) {
-        padding: 0 100px;
-    }*/
+    /*    padding: 0 50px;
+        @media (max-width: 767px) {
+            padding: 0 10px;
+        }
+        @media (min-width: 768px) {
+            padding: 0 50px;
+        }
+        @media (min-width: 1024px) {
+            padding: 0 100px;
+        }*/
 }
 

@@ -9,16 +9,19 @@ const Header = () => {
         <h1 className='text-3xl'> Job Seeker</h1>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
-        <Link className="mt-2 flex" to='#'><i className="fa-solid fa-upload"></i> Post a Job</Link>
-        <Link className="mt-2" to='#'>Login</Link>
+        <Link className="mt-2 flex custom-nav-hover" to='#'>
+          <i className="fa-solid fa-upload"></i>
+          Post a Job
+        </Link>
+        <Link className="mt-2 custom-nav-hover" to='#'>Login</Link>
         <Link to='#'>
-          <button className="bg-btnBlue w-40 p-2 text-white mt-2">
+          <button className="bg-btnBlue w-40 p-2 text-white mt-2 custom-nav-hover">
             Register
           </button>
         </Link>
       </div>
       <div className='md:hidden cursor-pointer'>
-        <IoMenu size={50} />
+        <IoMenu size={50}/>
       </div>
     </header>
   );

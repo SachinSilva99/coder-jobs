@@ -3,7 +3,7 @@ import JobCard from "../../components/job-card/JobCard.tsx";
 
 const HeroSection = () => {
   return (
-    <div className='px-4 pd:mx-8 lg:px-16'>
+    <div className='px-4 md:mx-8 lg:px-16'>
       <p className="text-lg mt-8 mb-4">
         Find your job now!
       </p>
@@ -11,8 +11,8 @@ const HeroSection = () => {
       <div className='border-0 md:border-2 border-slate-300 flex
         flex-col md:flex-row gap-2 md:items-center justify-center  md:justify-between rounded-lg  mb-12 '>
         {/*search bar*/}
-        <div className='flex gap-2  justify-between'>
-          <div className="flex  items-center">
+        <div className='flex gap-2 justify-between md:mx-4'>
+          <div className="flex items-center">
               <span className="absolute">
                 <FaSearch color={'#CDC7C7'}/>
               </span>
