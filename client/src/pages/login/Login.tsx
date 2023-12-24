@@ -17,7 +17,7 @@ const Login = () => {
               <p>If you don't have an account register</p>
               <p>
                 You can{" "}
-                <Link to="/register" className="text-blue-800">
+                <Link to="/register" className="text-blue-600">
                   Register here!
                 </Link>
               </p>
@@ -53,7 +53,7 @@ const Login = () => {
           <h1 className="text-white text-xl font-semibold">
             Sign in to Job Seeker
           </h1>
-          <h3 className="text-white text-xs">Find your job/employee sooner</h3>
+          <h3 className="text-white text-xs">Find your job | employee sooner</h3>
         </div>
       </div>
     </div>
