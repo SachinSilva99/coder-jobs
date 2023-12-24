@@ -3,7 +3,7 @@ import JobCard from "../../components/job-card/JobCard.tsx";
 
 const HeroSection = () => {
   return (
-    <div className='px-4 md:mx-8 lg:px-16'>
+    <div className='px-4 md:px-8 lg:px-16'>
       <p className="text-lg mt-8 mb-4">
         Find your job now!
       </p>
@@ -19,7 +19,7 @@ const HeroSection = () => {
             <input
               className='pl-8 border-b-2 border-slate-300 w-[250px] focus:outline-none'
               type="text"
-              placeholder='Search job title or keywords'
+              placeholder='Search job'
             />
           </div>
           <div className='block xl:hidden  cursor-pointer'>

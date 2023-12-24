@@ -5,7 +5,7 @@ import {SiHashnode} from "react-icons/si";
 const JobCard = () => {
   return (
     <div
-      className='border border-slate-300 rounded-lg transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105  duration-300'>
+      className='border border-slate-300 rounded-lg hover:bg-blue-100 hover:duration-500 cursor-pointer'>
       <div className='p-4 flex lg:flex-row gap-2 flex-col  rounded-md'>
         <div>
           <div className='flex justify-between  items-center'>

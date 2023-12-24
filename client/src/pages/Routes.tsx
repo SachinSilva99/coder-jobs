@@ -7,15 +7,19 @@ import HeroSection from "./home/HeroSection.tsx";
 import ApplyJob from "./home/apply/ApplyJob.tsx";
 import Admin from "./admin/Admin.tsx";
 import Stats from "./admin/stats/Stats.tsx";
-import JobSeekers from "./admin/job-seekers/JobSeekers.tsx";
 import Companies from "./admin/companies/Companies.tsx";
+import Users from "./admin/users/Users.tsx";
+import JobSeekers from "./admin/job-seekers/JobSeekers.tsx";
+import JobSeekerSection from "./admin/job-seekers/JobSeekerSection.tsx";
+import JobSeeker from "./admin/job-seekers/JobSeeker.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login/>,
-  }, {
-    path: "/admin/*",
+  },
+  {
+    path: "/admin",
     element: <Admin/>,
     children: [
       {
@@ -23,9 +27,23 @@ const router = createBrowserRouter([
         element: <Stats/>,
       },
       {
+        path: "users",
+        element: <Users/>,
+      },
+      {
         path: "job-seekers",
-        element: <JobSeekers/>,
-      },   {
+        element: <JobSeekerSection/>,
+        children: [
+          {
+            path: "",
+            element: <JobSeekers/>,
+          },
+          {
+            path: ":id",
+            element: <JobSeeker/>,
+          },
+        ]
+      }, {
         path: "companies",
         element: <Companies/>,
       },
@@ -36,7 +54,7 @@ const router = createBrowserRouter([
     element: <Register/>,
   },
   {
-    path: "/*",
+    path: "/",
     element: <Home/>,
     children: [
       {

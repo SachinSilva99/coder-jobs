@@ -12,7 +12,7 @@ if (mongoUrl) {
     .catch((er) => console.log(er));
 } else {
   console.error("MongoDB connection URL is undefined. Please check your environment variables.");
-  process.exit(1); // Exit the process with an error code
+  process.exit(1);
 }
 
 const app = express();
