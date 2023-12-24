@@ -1,5 +1,5 @@
 import {FaFilter, FaSearch} from "react-icons/fa";
-import JobCard from "../../components/job-card/JobCard.tsx";
+import JobCard from "../../components/cards/JobCard.tsx";
 
 const HeroSection = () => {
   return (
