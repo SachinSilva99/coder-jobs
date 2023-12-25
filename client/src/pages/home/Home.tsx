@@ -1,12 +1,11 @@
-import Header from "../../components/layout/Header.tsx";
-import {Outlet} from "react-router-dom";
-import JobSeekerHeader from "../../components/layout/JobSeekerHeader.tsx";
+import HomeHero from "../shared/HomeHero.tsx";
+import GuestHeader from "../../components/layout/GuestHeader.tsx";
 
 const Home = () => {
   return (
     <>
-      <JobSeekerHeader/>
-      <Outlet/>
+      <GuestHeader/>
+      <HomeHero/>
     </>
   );
 };

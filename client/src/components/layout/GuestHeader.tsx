@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {IoMenu} from "react-icons/io5";
 
 
-const Header = () => {
+const GuestHeader = () => {
   return (
     <header className='flex h-16 justify-between px-4 pd:px-8 lg:px-16 '>
       <div className="left-nav flex items-center justify-start">
@@ -27,4 +27,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default GuestHeader;

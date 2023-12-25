@@ -1,4 +1,4 @@
-const JobSeeker = () => {
+const JobSeekerDetail = () => {
   return (
     <div className='px-4 pd:px-8 lg:px-16 min-h-[80vh]'>
       <h1>Job Seeker : <span>SachinSilva</span></h1>
@@ -17,4 +17,4 @@ const JobSeeker = () => {
   );
 }
 
-export default JobSeeker;
+export default JobSeekerDetail;

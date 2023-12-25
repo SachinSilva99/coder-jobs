@@ -1,7 +1,7 @@
 import {FaFilter, FaSearch} from "react-icons/fa";
 import JobCard from "../../components/cards/JobCard.tsx";
 
-const HeroSection = () => {
+const HomeHero = () => {
   return (
     <div className='px-4 md:px-8 lg:px-16'>
       <p className="text-lg mt-8 mb-4">
@@ -85,4 +85,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HomeHero;

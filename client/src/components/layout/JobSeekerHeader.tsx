@@ -12,13 +12,13 @@ const JobSeekerHeader = () => {
         <Link to=''>
           <div className='custom-nav-hover'>Jobs</div>
         </Link>
-        <Link to='/opportunities'>
+        <Link to='opportunities'>
           <div className='custom-nav-hover'>Opportunities</div>
         </Link>
-        <Link to='/submissions'>
+        <Link to='submissions'>
           <div className='custom-nav-hover'>Submissions</div>
         </Link>
-        <Link to='/profile'>
+        <Link to='profile'>
           <div className='custom-nav-hover rounded-full h-10 w-10'>
             <img
               src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2281862025.jpg"
