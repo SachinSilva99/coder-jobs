@@ -1,5 +1,5 @@
-import HomeHero from "../shared/HomeHero.tsx";
-import GuestHeader from "../../components/layout/GuestHeader.tsx";
+import HomeHero from "./shared/HomeHero.tsx";
+import GuestHeader from "../components/layout/GuestHeader.tsx";
 
 const Home = () => {
   return (

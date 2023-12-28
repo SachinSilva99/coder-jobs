@@ -1,12 +1,47 @@
-import {RouterProvider} from "react-router-dom";
-import router from "./pages/Routes.tsx";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Footer from "./components/layout/Footer.tsx";
+import Login from "./pages/login/Login.tsx";
+import Admin from "./pages/admin/Admin.tsx";
+import Stats from "./pages/admin/stats/Stats.tsx";
+import Users from "./pages/admin/users/Users.tsx";
+import JobSeekerSection from "./pages/admin/job-seekers/JobSeekerSection.tsx";
+import JobSeekers from "./pages/admin/job-seekers/JobSeekers.tsx";
+import JobSeekerDetail from "./pages/admin/job-seekers/JobSeekerDetail.tsx";
+import Companies from "./pages/admin/companies/Companies.tsx";
+import Register from "./pages/register/Register.tsx";
+import Home from "./pages/Home.tsx";
+import JobSeeker from "./pages/job-seeker/JobSeeker.tsx";
+import HomeHero from "./pages/shared/HomeHero.tsx";
+import Opportunities from "./pages/job-seeker/opportunities/Opportunities.tsx";
+import Submissions from "./pages/job-seeker/submissions/Submissions.tsx";
+import Error from "./pages/error/Error.tsx";
 
 
 function App() {
   return (
     <>
-      <RouterProvider router={router}/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/job-seeker" element={<JobSeeker/>}>
+            <Route path="" element={<HomeHero/>}/>
+            <Route path="opportunities" element={<Opportunities/>}/>
+            <Route path="submissions" element={<Submissions/>}/>
+          </Route>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/admin" element={<Admin/>}>
+            <Route path="" element={<Stats/>}/>
+            <Route path="users" element={<Users/>}/>
+            <Route path="job-seekers" element={<JobSeekerSection/>}>
+              <Route path="" element={<JobSeekers/>}/>
+              <Route path=":id" element={<JobSeekerDetail/>}/>
+            </Route>
+            <Route path="companies" element={<Companies/>}/>
+          </Route>
+          <Route path="*" element={<Error/>}/>
+        </Routes>
+      </BrowserRouter>
       <Footer/>
     </>
   );
