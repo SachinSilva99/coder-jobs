@@ -16,6 +16,8 @@ import Opportunities from "./pages/job-seeker/opportunities/Opportunities.tsx";
 import Submissions from "./pages/job-seeker/submissions/Submissions.tsx";
 import Error from "./pages/error/Error.tsx";
 import JobSeekerProfile from "./pages/job-seeker/profile/JobSeekerProfile.tsx";
+import RegisterFormJobSeeker from "./pages/register/RegisterFormJobSeeker.tsx";
+import RegisterUser from "./pages/register/RegisterUser.tsx";
 
 
 function App() {
@@ -31,7 +33,10 @@ function App() {
             <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
+          <Route path="/register" element={<Register/>}>
+            <Route path="job-seeker" element={<RegisterFormJobSeeker/>}/>
+            <Route path="" element={<RegisterUser/>}/>
+          </Route>
           <Route path="/admin" element={<Admin/>}>
             <Route path="" element={<Stats/>}/>
             <Route path="users" element={<Users/>}/>

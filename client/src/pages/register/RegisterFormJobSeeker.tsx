@@ -1,11 +1,9 @@
-import Input from "../../../components/input/Input.tsx";
-import {FaUser} from "react-icons/fa";
-import {MdEmail} from "react-icons/md";
-import {RiLockPasswordFill} from "react-icons/ri";
 
-const JobSeekerProfile = () => {
+
+const RegisterFormJobSeeker = () => {
   return (
     <div className='px-4 md:px-8 lg:px-16 my-4'>
+      <h1 className="py-7 text-2xl">Job Seeker</h1>
       <h1 className='text-center font-semibold text-xl'>Profile</h1>
       <div className='flex  items-center justify-center'>
         <div className='flex items-center justify-center flex-wrap max-w-[500px] min-w-[250px]'>
@@ -15,24 +13,6 @@ const JobSeekerProfile = () => {
               src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2281862025.jpg"
               alt="img"/>
           </div>
-          <Input name={'email'} label={'Email'} type={'email'} placeholder={'Enter your email'} icon={<MdEmail/>}
-                 optional={true}/>
-          <div className='flex  gap-4'>
-            <Input name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'} icon={<FaUser/>}
-                   optional={true}/>
-            <Input name={'lName'} label={'Last Name'} type={'text'} placeholder={'last name'} icon={<FaUser/>}
-                   optional={true}/>
-          </div>
-          <Input name={'username'} label={'Username'} type={'username'} placeholder={'Enter your username'}
-                 icon={<FaUser/>} optional={true}/>
-          <Input name={'password'} label={'Password'} type={'password'} placeholder={'Enter your password'}
-                 optional={true}
-                 icon={<RiLockPasswordFill/>
-                 }/>
-          <Input name={'confirmPassword'} label={'Confirm Password'} type={'confirmPassword'}
-                 placeholder={'Confirm your password'} icon={<RiLockPasswordFill/>
-          } optional={true}/>
-
           <select id="jobType"
                   className="block w-full py-2  text-sm focus:outline-none border-b-2 border-slate-300 hover:border-blue-400 mt-8 mb-2">
             <option selected>Preferred Category</option>
@@ -48,11 +28,12 @@ const JobSeekerProfile = () => {
             <option value="">UI/UX Engineer</option>
           </select>
           <div className='flex gap-4 flex-col w-full mt-8 mb-2'>
-            <label htmlFor="cv">Upload your new CV</label>
+            <label htmlFor="cv">Upload your CV</label>
             <input id='cv' type='file'/>
           </div>
-          <button className='bg-slate-400 px-8 py-4 text-white my-4 rounded-md hover:opacity-80 active:opacity-50 mt-8 mb-2'>
-            Update
+          <button
+            className='bg-slate-400 px-8 py-4 text-white my-4 rounded-md hover:opacity-80 active:opacity-50 mt-8 mb-2'>
+            Submit
           </button>
         </div>
       </div>
@@ -60,4 +41,4 @@ const JobSeekerProfile = () => {
   );
 };
 
-export default JobSeekerProfile;
+export default RegisterFormJobSeeker;
