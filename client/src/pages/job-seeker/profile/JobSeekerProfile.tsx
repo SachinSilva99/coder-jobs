@@ -36,8 +36,6 @@ const JobSeekerProfile = () => {
             Update
           </button>
         </div>
-
-
       </div>
     </div>
   );
