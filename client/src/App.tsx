@@ -15,6 +15,7 @@ import HomeHero from "./pages/shared/HomeHero.tsx";
 import Opportunities from "./pages/job-seeker/opportunities/Opportunities.tsx";
 import Submissions from "./pages/job-seeker/submissions/Submissions.tsx";
 import Error from "./pages/error/Error.tsx";
+import JobSeekerProfile from "./pages/job-seeker/profile/JobSeekerProfile.tsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="" element={<HomeHero/>}/>
             <Route path="opportunities" element={<Opportunities/>}/>
             <Route path="submissions" element={<Submissions/>}/>
+            <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>

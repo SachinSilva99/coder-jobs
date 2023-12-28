@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {IoMdSettings} from "react-icons/io";
+import {MdLogout} from "react-icons/md";
 
 
 const JobSeekerHeader = () => {
@@ -25,8 +25,8 @@ const JobSeekerHeader = () => {
               alt="img"/>
           </div>
         </Link>
-        <Link to='settings' className='hover:text-blue-500'>
-          <IoMdSettings size={25}/>
+        <Link to='/' className='hover:text-blue-500'>
+          <MdLogout size={25}/>
         </Link>
       </div>
     </header>

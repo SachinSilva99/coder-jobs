@@ -20,6 +20,10 @@ const Register = () => {
             </Link>
           </p>
           <Input name={'email'} label={'Email'} type={'email'} placeholder={'Enter your email'} icon={<MdEmail/>}/>
+          <div className='flex  gap-4'>
+            <Input  name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'} icon={<FaUser/>}/>
+            <Input name={'lName'} label={'Last Name'} type={'text'} placeholder={'last name'} icon={<FaUser/>}/>
+          </div>
           <Input name={'username'} label={'Username'} type={'username'} placeholder={'Enter your username'}
                  icon={<FaUser/>}/>
           <Input name={'password'} label={'Password'} type={'password'} placeholder={'Enter your password'}
