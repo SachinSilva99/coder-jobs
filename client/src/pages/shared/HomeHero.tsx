@@ -11,13 +11,13 @@ const HomeHero = () => {
       <div className='border-0 md:border-2 border-slate-300 flex
         flex-col md:flex-row gap-2 md:items-center justify-center  md:justify-between rounded-lg  mb-12 '>
         {/*search bar*/}
-        <div className='flex gap-2 justify-between md:mx-4'>
+        <div className='flex gap-2 justify-between md:mx-4 '>
           <div className="flex items-center">
               <span className="absolute">
                 <FaSearch color={'#CDC7C7'}/>
               </span>
             <input
-              className='pl-8 border-b-2 border-slate-300 w-[250px] focus:outline-none'
+              className='pl-8 py-1 border-b-2 border-slate-300 min-w-[300px] focus:outline-none'
               type="text"
               placeholder='Search job'
             />

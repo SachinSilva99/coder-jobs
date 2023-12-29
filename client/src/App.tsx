@@ -18,6 +18,7 @@ import Error from "./pages/error/Error.tsx";
 import JobSeekerProfile from "./pages/job-seeker/profile/JobSeekerProfile.tsx";
 import RegisterFormJobSeeker from "./pages/register/RegisterFormJobSeeker.tsx";
 import RegisterUser from "./pages/register/RegisterUser.tsx";
+import RegisterFormCompany from "./pages/register/RegisterFormCompany.tsx";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/register" element={<Register/>}>
             <Route path="job-seeker" element={<RegisterFormJobSeeker/>}/>
             <Route path="" element={<RegisterUser/>}/>
+            <Route path="company" element={<RegisterFormCompany/>}/>
           </Route>
           <Route path="/admin" element={<Admin/>}>
             <Route path="" element={<Stats/>}/>

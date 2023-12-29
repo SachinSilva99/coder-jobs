@@ -4,19 +4,22 @@ import {MdEmail} from "react-icons/md";
 import {FaUser} from "react-icons/fa";
 import {RiLockPasswordFill} from "react-icons/ri";
 import loginimg from "../../assets/loginimg.png";
+import logo from "../../assets/logo.png";
 
 const RegisterUser = () => {
   return (
     <div className="flex min-h-[80vh] px-2 pd:mx-8 lg:px-16">
       <div className="left flex flex-col min-w-400 max-w-[800px] flex-1">
-        <h1 className="py-7 text-2xl">Job Seeker</h1>
+        <div className=" flex items-center justify-start my-4">
+          <img className='' src={logo} alt=""/>
+        </div>
         <div className="flex flex-col">
-          <h1 className="font-bold mb-5">Sign up</h1>
+          <h1 className="font-bold mb-5 text-xl">Sign up</h1>
           <p>If you already have an account register</p>
           <p>
             You can{" "}
             <Link to="/login">
-              <span className="text-blue-900">Login here!</span>
+              <span className="text-blue-700">Login here!</span>
             </Link>
           </p>
           <Input name={'email'} label={'Email'} type={'email'} placeholder={'Enter your email'} icon={<MdEmail/>}/>

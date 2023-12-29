@@ -1,12 +1,13 @@
 import {Link} from "react-router-dom";
 import {IoMenu} from "react-icons/io5";
+import logo from '../../assets/logo.png';
 
 
 const GuestHeader = () => {
   return (
-    <header className='flex h-16 justify-between px-4 pd:px-8 lg:px-16 '>
-      <div className="left-nav flex items-center justify-start">
-        <h1 className='text-3xl'> Job Seeker</h1>
+    <header className='flex h-28 justify-between px-4 pd:px-8 lg:px-16 '>
+      <div className="left-nav flex items-center justify-start ">
+        <img className='' src={logo} alt=""/>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
         <Link className="mt-2 flex custom-nav-hover" to='#'>

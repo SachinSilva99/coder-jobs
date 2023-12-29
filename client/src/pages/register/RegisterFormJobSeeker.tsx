@@ -1,9 +1,12 @@
+import logo from "../../assets/logo.png";
 
 
 const RegisterFormJobSeeker = () => {
   return (
     <div className='px-4 md:px-8 lg:px-16 my-4'>
-      <h1 className="py-7 text-2xl">Job Seeker</h1>
+      <div className=" flex items-center justify-start my-4">
+        <img className='' src={logo} alt=""/>
+      </div>
       <h1 className='text-center font-semibold text-xl'>Profile</h1>
       <div className='flex  items-center justify-center'>
         <div className='flex items-center justify-center flex-wrap max-w-[500px] min-w-[250px]'>
