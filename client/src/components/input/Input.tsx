@@ -16,7 +16,7 @@ interface Props {
 function Input(props: Props) {
   return (
     <div className='flex flex-col w-full'>
-      <label className="mt-8 mb-2" htmlFor={props.name}>
+      <label className="mt-4 mb-2" htmlFor={props.name}>
         {props.label} {!props.optional && <span className={'text-red-600'}>{' '}*</span>}
       </label>
       <div className="relative">

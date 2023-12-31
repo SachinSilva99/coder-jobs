@@ -1,5 +1,5 @@
 import Input from "../../components/input/Input.tsx";
-import {FaUser} from "react-icons/fa";
+import {FaPhone, FaUser} from "react-icons/fa";
 import logo from "../../assets/logo.png";
 
 const RegisterFormCompany = () => {
@@ -20,6 +20,10 @@ const RegisterFormCompany = () => {
           </div>
           <Input name={'companyName'} label={'Company Name'} type={'text'} placeholder={'company name'}
                  icon={<FaUser/>}/>
+          <Input name={'companyContact'} label={'Company Contact'} type={'text'}
+                 placeholder={'company contact +94*********'}
+                 icon={<FaPhone />
+                 }/>
           <div className='flex  items-center w-full my-4'>
             <label htmlFor="companySize">Company Size (Employees)</label>
             <select id="companySize"

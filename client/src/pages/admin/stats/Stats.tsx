@@ -3,7 +3,7 @@ import {FaPeopleGroup} from "react-icons/fa6";
 
 const Stats = () => {
   return (
-    <div className='px-4 pd:mx-8 lg:px-16 min-h-[80vh]'>
+    <div className='px-4 pd:mx-8 lg:px-16 min-h-[90vh]'>
       <h1 className='text-2xl text-slate-600 my-4'>Stats</h1>
       {/*stats*/}
       <div className='flex gap-2 flex-wrap'>

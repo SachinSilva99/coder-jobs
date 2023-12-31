@@ -5,9 +5,9 @@ import logo from "../../assets/logo.png";
 
 const JobSeekerHeader = () => {
   return (
-    <header className='flex w-full h-28 justify-between px-4 pd:mx-8 lg:px-16'>
+    <header className='flex w-full h-[10vh] justify-between px-4 pd:mx-8 lg:px-16'>
       <div className="left-nav flex items-center justify-start ">
-        <img className='' src={logo} alt=""/>
+        <img className='h-20' src={logo} alt=""/>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
         <Link to=''>

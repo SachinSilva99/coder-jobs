@@ -6,9 +6,9 @@ import logo from "../../assets/logo.png";
 
 const AdminHeader = () => {
   return (
-    <header className='flex w-full h-28 justify-between px-4 pd:mx-8 lg:px-16'>
+    <header className='flex w-full h-[10vh] justify-between px-4 pd:mx-8 lg:px-16'>
       <div className="left-nav flex items-center justify-start ">
-        <img className='' src={logo} alt=""/>
+        <img className='h-20' src={logo} alt=""/>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
         <Link to=''>
@@ -23,7 +23,10 @@ const AdminHeader = () => {
         <Link to='companies'>
           <div className='custom-nav-hover'>Companies</div>
         </Link>
-        <Link to='companies'>
+        <Link to='payments'>
+          <div className='custom-nav-hover'>Payments</div>
+        </Link>
+        <Link to='new-admin'>
           <div className='custom-nav-hover'>Make new Admin</div>
         </Link>
         <Link to='companies' className='hover:text-blue-500'>

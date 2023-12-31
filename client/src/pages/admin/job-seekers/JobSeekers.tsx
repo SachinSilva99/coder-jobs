@@ -4,7 +4,7 @@ import {FaSearch} from "react-icons/fa";
 
 const JobSeekers = () => {
   return (
-    <div className='px-4 pd:px-8 lg:px-16 min-h-[80vh]'>
+    <div className='px-4 pd:px-8 lg:px-16 min-h-[90vh]'>
       <h1 className='text-2xl text-cyan-700 my-4'>Job Seekers</h1>
       <div className='w-96 my-8'>
         <Input

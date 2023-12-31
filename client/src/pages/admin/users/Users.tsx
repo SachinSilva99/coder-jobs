@@ -3,9 +3,9 @@ import {FaSearch} from "react-icons/fa";
 
 const Users = () => {
   return (
-    <div className='px-4 pd:px-8 lg:px-16 min-h-[80vh]'>
-      <h1 className='text-2xl'>Users</h1>
-      <div className='w-96 my-8'>
+    <div className='px-4 pd:px-8 lg:px-16 min-h-[90vh]'>
+      <h1 className='text-2xl my-4'>Users</h1>
+      <div className='w-96 my-4 md:my-4'>
         <Input
           name={'users'}
           label={'Search Users'}

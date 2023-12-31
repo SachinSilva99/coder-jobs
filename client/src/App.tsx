@@ -19,6 +19,7 @@ import JobSeekerProfile from "./pages/job-seeker/profile/JobSeekerProfile.tsx";
 import RegisterFormJobSeeker from "./pages/register/RegisterFormJobSeeker.tsx";
 import RegisterUser from "./pages/register/RegisterUser.tsx";
 import RegisterFormCompany from "./pages/register/RegisterFormCompany.tsx";
+import Payments from "./pages/admin/payemnts/Payments.tsx";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
               <Route path=":id" element={<JobSeekerDetail/>}/>
             </Route>
             <Route path="companies" element={<Companies/>}/>
+            <Route path="payments" element={<Payments/>}/>
           </Route>
           <Route path="*" element={<Error/>}/>
         </Routes>

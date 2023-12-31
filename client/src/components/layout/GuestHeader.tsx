@@ -7,7 +7,7 @@ const GuestHeader = () => {
   return (
     <header className='flex h-28 justify-between px-4 pd:px-8 lg:px-16 '>
       <div className="left-nav flex items-center justify-start ">
-        <img className='' src={logo} alt=""/>
+        <img className='h-20' src={logo} alt="logo"/>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
         <Link className="mt-2 flex custom-nav-hover" to='#'>

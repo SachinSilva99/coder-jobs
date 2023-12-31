@@ -65,7 +65,11 @@ const OpportunityCard = () => {
             <div>
               <h2 className='font-bold'>Description</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa error placeat repellendus
-                reprehenderit, sed vero! Blanditiis laudantium sit voluptates!</p>
+                reprehenderit, sed vero! Blanditiis laudantium sit voluptates! Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Ipsum quaerat, quas! Dignissimos doloremque error expedita fugit, harum id ipsa
+                laboriosam libero nisi non porro quas, qui sed sequi similique, sint velit vitae. Consectetur culpa,
+                distinctio eligendi exercitationem, facere illum incidunt iusto minima molestias numquam quisquam quod
+                reprehenderit totam ullam vel!</p>
             </div>
           </div>
         </div>

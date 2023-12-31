@@ -8,7 +8,7 @@ import logo from "../../assets/logo.png";
 
 const RegisterUser = () => {
   return (
-    <div className="flex min-h-[80vh] px-2 pd:mx-8 lg:px-16">
+    <div className="flex min-h-[100vh] px-2 pd:mx-8 lg:px-16">
       <div className="left flex flex-col min-w-400 max-w-[800px] flex-1">
         <div className=" flex items-center justify-start my-4">
           <img className='' src={logo} alt=""/>

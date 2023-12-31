@@ -1,5 +1,5 @@
 import Input from "../../../components/input/Input.tsx";
-import {FaUser} from "react-icons/fa";
+import {FaPhone, FaUser} from "react-icons/fa";
 import {MdEmail} from "react-icons/md";
 import {RiLockPasswordFill} from "react-icons/ri";
 
@@ -8,7 +8,7 @@ const JobSeekerProfile = () => {
     <div className='px-4 md:px-8 lg:px-16 my-4'>
       <h1 className='text-center font-semibold text-xl'>Profile</h1>
       <div className='flex  items-center justify-center'>
-        <div className='flex items-center justify-center flex-wrap max-w-[500px] min-w-[250px]'>
+        <div className='flex items-center justify-center gap-2 flex-wrap max-w-[500px] min-w-[250px]'>
           <div className=' rounded-full h-96 w-96 cursor-pointer'>
             <img
               className='object-contain'
@@ -23,14 +23,18 @@ const JobSeekerProfile = () => {
             <Input name={'lName'} label={'Last Name'} type={'text'} placeholder={'last name'} icon={<FaUser/>}
                    optional={true}/>
           </div>
+          <Input name={'jobSeekerContact'} label={'Job Seeker Contact'} type={'text'}
+                 placeholder={'job seeker contact +94*********'} optional={true}
+                 icon={<FaPhone/>
+                 }/>
           <Input name={'username'} label={'Username'} type={'username'} placeholder={'Enter your username'}
                  icon={<FaUser/>} optional={true}/>
-          <Input name={'password'} label={'Password'} type={'password'} placeholder={'Enter your password'}
+          <Input name={'currentPassword'} label={'Password'} type={'password'} placeholder={'Enter your current Password'}
                  optional={true}
                  icon={<RiLockPasswordFill/>
                  }/>
-          <Input name={'confirmPassword'} label={'Confirm Password'} type={'confirmPassword'}
-                 placeholder={'Confirm your password'} icon={<RiLockPasswordFill/>
+          <Input name={'newPassword'} label={'New Password'} type={'newPassword'}
+                 placeholder={'New password'} icon={<RiLockPasswordFill/>
           } optional={true}/>
 
           <select id="jobType"
