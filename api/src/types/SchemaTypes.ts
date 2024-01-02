@@ -13,6 +13,7 @@ export interface IUser extends Document {
   lName: string,
   email: string,
   password: string
+  deleteStatus:boolean
 }
 
 export interface IJobSeeker extends Document {
@@ -22,7 +23,8 @@ export interface IJobSeeker extends Document {
   avatar: string,
   jobSeekerContact: string,
   gender: string,
-  user: ObjectId
+  user: ObjectId,
+  deleteStatus:boolean
 }
 
 export interface ICompany extends Document {

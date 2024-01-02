@@ -7,6 +7,7 @@ const userSchema = new Schema<IUser>({
   lName: {type: String, required: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
+  deleteStatus:{type:Boolean, default:false}
 }, {timestamps: true});
 
 const userModel = model<IUser>("User", userSchema);
