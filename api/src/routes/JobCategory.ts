@@ -1,8 +1,14 @@
 import {Router} from "express";
-import {createJobCategory, getAllJobCategories, updateJobCategory} from "../controller/Category.controller";
+import {
+  createJobCategory,
+  getAllJobCategories,
+  getAllJobCategoriesPerCategory, getCategory,
+  updateJobCategory
+} from "../controller/Category.controller";
 
 const router = Router();
 router.post("/", createJobCategory);
+router.get("/:category", getCategory);
 router.get("/", getAllJobCategories);
 router.put("/:category", updateJobCategory);
 export default router;

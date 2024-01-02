@@ -3,8 +3,8 @@ import {IJobSeeker} from "../types/SchemaTypes";
 
 
 const jobSeekerSchema = new Schema<IJobSeeker>({
-  category: {type: Schema.Types.ObjectId, required: true, ref: "Category"},
-  subCategory: {type: Schema.Types.ObjectId, required: true, ref: "SubCategory"},
+  category: {type: String, required: true},
+  subCategory: {type: String, required: true},
   resume: {type: String, required: true},
   avatar: {type: String, required: true},
   jobSeekerContact: {type: String, required: true},

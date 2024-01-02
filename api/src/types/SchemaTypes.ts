@@ -1,13 +1,10 @@
 import {Document} from "mongoose";
 import {ObjectId} from "mongodb";
 
-export interface ISubcategory extends Document {
-  name: string;
-  category: ObjectId,
-}
 
 export interface IJobCategory extends Document {
   name: string;
+  subCategories:string[]
 }
 
 export interface IUser extends Document {
@@ -19,8 +16,8 @@ export interface IUser extends Document {
 }
 
 export interface IJobSeeker extends Document {
-  category: ObjectId,
-  subCategory: ObjectId,
+  category: string,
+  subCategory: string,
   resume: string,
   avatar: string,
   jobSeekerContact: string,
