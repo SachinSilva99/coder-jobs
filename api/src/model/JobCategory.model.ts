@@ -2,16 +2,13 @@ import {Schema, model} from 'mongoose';
 import {IJobCategory, ISubcategory} from "../types/SchemaTypes";
 
 
-export const subcategorySchema = new Schema<ISubcategory>({
+const subcategorySchema = new Schema<ISubcategory>({
   name: {type: String, required: true},
+  category: {type: Schema.Types.ObjectId, required: true, ref: "Category"}
 });
-
 
 const categorySchema = new Schema<IJobCategory>({
   name: {type: String, required: true, unique: true},
-  subCategories: {
-    type: [subcategorySchema], required: true,
-  },
 });
 
 const JobCategoryModel = model<IJobCategory>('JobCategory', categorySchema);

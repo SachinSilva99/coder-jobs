@@ -1,11 +1,11 @@
-import express, {Request, Response} from "express";
-// import userRoute from "./routes/user.route";
+import express from "express";
 import mongoose from "mongoose";
 import env from "dotenv";
 import authRoute from "./routes/Auth.route";
 import userRoute from "./routes/User.route";
 import jobSeekerRoute from "./routes/JobSeeker.route";
-import jobCategory from "./routes/JobCategory";
+import jobCategoryRoute from "./routes/JobCategory";
+import subCategoryRoute from "./routes/SubCategory.route";
 
 env.config();
 const mongoUrl = process.env.MONGO_URL;
@@ -21,7 +21,8 @@ app.use(express.json());
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/job-seeker", jobSeekerRoute);
-app.use("/api/v1/category", jobCategory);
+app.use("/api/v1/category", jobCategoryRoute);
+app.use("/api/v1/sub-category", subCategoryRoute);
 app.listen(3000, () => {
   console.log(`[server]: Server is running at http://localhost:3000`);
 });

@@ -1,12 +1,13 @@
-import {Document, ObjectId} from "mongoose";
+import {Document} from "mongoose";
+import {ObjectId} from "mongodb";
 
 export interface ISubcategory extends Document {
   name: string;
+  category: ObjectId,
 }
 
 export interface IJobCategory extends Document {
   name: string;
-  subCategories: ISubcategory[];
 }
 
 export interface IUser extends Document {
