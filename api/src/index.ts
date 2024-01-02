@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import env from "dotenv";
 import authRoute from "./routes/Auth.route";
 import userRoute from "./routes/User.route";
+import jobSeekerRoute from "./routes/JobSeeker.route";
+import jobCategory from "./routes/JobCategory";
 
 env.config();
 const mongoUrl = process.env.MONGO_URL;
@@ -18,6 +20,8 @@ const app = express();
 app.use(express.json());
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/job-seeker", jobSeekerRoute);
+app.use("/api/v1/category", jobCategory);
 app.listen(3000, () => {
   console.log(`[server]: Server is running at http://localhost:3000`);
 });

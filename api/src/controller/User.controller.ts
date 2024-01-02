@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
-import UserModel, {IUser} from "../model/User.model";
+import UserModel from "../model/User.model";
 import {StandardResponse} from "../dto/StandardResponse";
+import {IUser} from "../types/SchemaTypes";
 
 export const getAllUsers = async (req: Request, res: Response, next: (e: any) => void) => {
   try {

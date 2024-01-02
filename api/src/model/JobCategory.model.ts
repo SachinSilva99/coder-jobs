@@ -9,10 +9,13 @@ export const subcategorySchema = new Schema<ISubcategory>({
 
 const categorySchema = new Schema<IJobCategory>({
   name: {type: String, required: true, unique: true},
-  subcategories: [subcategorySchema],
+  subCategories: {
+    type: [subcategorySchema], required: true,
+  },
 });
 
 const JobCategoryModel = model<IJobCategory>('JobCategory', categorySchema);
+const SubJobCategoryModel = model<ISubcategory>('SubJobCategory', subcategorySchema);
 
-export {IJobCategory, JobCategoryModel};
+export {IJobCategory, JobCategoryModel, SubJobCategoryModel};
 

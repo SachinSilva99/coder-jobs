@@ -6,7 +6,7 @@ export interface ISubcategory extends Document {
 
 export interface IJobCategory extends Document {
   name: string;
-  subcategories: ISubcategory[];
+  subCategories: ISubcategory[];
 }
 
 export interface IUser extends Document {
