@@ -8,7 +8,7 @@ export const createJobCategory = async (req: Request, res: Response, next: (e: a
     const category: IJobCategory = req.body;
     const jobCategoryModel = new JobCategoryModel(category);
     const savedCategory = await jobCategoryModel.save();
-    const savedSubCategories: any[] = []
+    const savedSubCategories: ISubcategory[] = [];
     for (const subCategory of category.subCategories) {
       const subJobCategoryModel = new SubJobCategoryModel(subCategory);
       const savedSubCategory = await subJobCategoryModel.save();
