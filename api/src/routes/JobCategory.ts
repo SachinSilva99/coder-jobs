@@ -2,7 +2,7 @@ import {Router} from "express";
 import {
   createJobCategory,
   getAllJobCategories,
-  getAllJobCategoriesPerCategory, getCategory,
+  getCategory,
   updateJobCategory
 } from "../controller/Category.controller";
 

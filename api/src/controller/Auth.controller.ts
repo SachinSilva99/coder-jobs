@@ -6,7 +6,7 @@ export const userSignUp = async (req: Request, res: Response, next: (e: any) => 
   try {
     const user: IUser = req.body;
     const saveUser = await new UserModel(user).save();
-    res.status(200).send(saveUser);
+    res.status(200).send(saveUser._id);
   } catch (e) {
     next(e);
   }

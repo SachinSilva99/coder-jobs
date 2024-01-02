@@ -42,16 +42,6 @@ export const getAllJobCategories = async (req: Request, res: Response, next: (e:
     next(er);
   }
 }
-export const getAllJobCategoriesPerCategory = async (req: Request, res: Response, next: (e: any) => void) => {
-  try {
-    const category = req.params.category;
-    const categories = await JobCategoryModel.find({name:category});
-    const response: StandardResponse<any> = {statusCode: 200, msg: "OK", data: categories}
-    res.status(200).send(response);
-  } catch (er) {
-    next(er);
-  }
-}
 
 export const getCategory = async (req: Request, res: Response, next: (e: any) => void) => {
   try {

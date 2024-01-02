@@ -1,5 +1,5 @@
 export interface StandardResponse <T>{
   statusCode:number;
-  msg:string;
+  msg?:string;
   data?:T
 }

@@ -4,7 +4,7 @@ import {ObjectId} from "mongodb";
 
 export interface IJobCategory extends Document {
   name: string;
-  subCategories:string[]
+  subCategories: string[]
 }
 
 export interface IUser extends Document {
@@ -21,6 +21,7 @@ export interface IJobSeeker extends Document {
   resume: string,
   avatar: string,
   jobSeekerContact: string,
+  gender: string,
   user: ObjectId
 }
 
