@@ -3,7 +3,7 @@ import express, {Request, Response} from "express";
 import mongoose from "mongoose";
 import env from "dotenv";
 import authRoute from "./routes/Auth.route";
-
+import userRoute from "./routes/User.route";
 
 env.config();
 const mongoUrl = process.env.MONGO_URL;
@@ -16,9 +16,8 @@ mongoose
 const app = express();
 
 app.use(express.json());
-// app.use("/api/v1/user", userRoute);
+app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);
-console.log('Hello')
 app.listen(3000, () => {
   console.log(`[server]: Server is running at http://localhost:3000`);
 });

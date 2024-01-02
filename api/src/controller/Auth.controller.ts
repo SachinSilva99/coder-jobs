@@ -1,10 +1,10 @@
 import {Request, Response} from "express";
-import UserModel, {IUser} from "../model/User.model";
+import UserModel from "../model/User.model";
+import {IUser} from "../types/SchemaTypes";
 
 export const userSignUp = async (req: Request, res: Response, next: (e: any) => void) => {
   try {
-    const {username, fName, lName, email, password} = req.body;
-    const user: IUser = {username, fName, lName, email, password};
+    const user: IUser = req.body;
     const saveUser = await new UserModel(user).save();
     res.status(200).send(saveUser);
   } catch (e) {
