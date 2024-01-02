@@ -1,9 +1,9 @@
 import {Router} from "express";
-import {createSubJobCategory, getAllSubJobCategories} from "../controller/SubCategoryController";
-import {updateJobCategory} from "../controller/Category.controller";
+import {createSubJobCategory, getAllSubJobCategories, updateSubJobCategory} from "../controller/SubCategoryController";
 
 const router = Router();
 router.post("/", createSubJobCategory);
 router.get("/", getAllSubJobCategories);
+router.put("/", updateSubJobCategory);
 
 export default router;

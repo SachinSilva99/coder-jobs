@@ -26,6 +26,7 @@ export const updateJobCategory = async (req: Request, res: Response, next: (e: a
     }
     await JobCategoryModel.findOneAndUpdate({_id: foundCategory._id}, {name: categoryName});
     res.status(204).send("OK");
+
   } catch (er) {
     next(er);
   }

@@ -13,7 +13,8 @@ const subCategoryNotFoundResponse = (subCategory: string): StandardResponse<stri
 export const createSubJobCategory = async (req: Request, res: Response, next: (e: any) => void) => {
   try {
     const subCategory: any = req.body;
-    const categoryName = req.query.category;
+    const categoryName = req.query.categoryName;
+    console.log(categoryName)
     const foundCategory = await JobCategoryModel.findOne({name: categoryName});
 
     if (!foundCategory) {
@@ -37,22 +38,24 @@ export const createSubJobCategory = async (req: Request, res: Response, next: (e
 
 export const updateSubJobCategory = async (req: Request, res: Response, next: (e: any) => void) => {
   try {
-    const categoryName = req.query.category;
+    const categoryName = req.query.categoryName;
+    const subCategoryName = req.query.subCategoryName;
     const foundCategory = await JobCategoryModel.findOne({name: categoryName});
-
+    console.log(foundCategory)
     if (!foundCategory) {
       const response: StandardResponse<string> = categoryNotFoundResponse(categoryName as string);
       res.status(404).send(response);
       return;
     }
 
-    const subCategoryName = req.body.subCategoryName;
-    const subCategoryFound =
-      await SubJobCategoryModel.findOne({name: subCategoryName, category: foundCategory._id});
+    const subCategoryFound = await SubJobCategoryModel.findOne({name: subCategoryName, category: foundCategory._id});
     if (!subCategoryFound) {
-      const response: StandardResponse<string> = subCategoryNotFoundResponse(subCategoryName);
+      const response: StandardResponse<string> = subCategoryNotFoundResponse(subCategoryName as string);
       res.status(404).send(response);
+      return;
     }
+    await SubJobCategoryModel.findOneAndUpdate({name: subCategoryName}, {name: req.body.name})
+    res.status(204).send("OK");
   } catch (er) {
     next(er);
   }
