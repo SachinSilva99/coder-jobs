@@ -5,6 +5,7 @@ import authRoute from "./routes/Auth.route";
 import userRoute from "./routes/User.route";
 import jobSeekerRoute from "./routes/JobSeeker.route";
 import jobCategoryRoute from "./routes/JobCategory";
+import errorHandler from "./middlewares/ErrorHandler";
 
 env.config();
 const mongoUrl = process.env.MONGO_URL;
@@ -27,13 +28,4 @@ app.listen(3000, () => {
 });
 
 
-app.use((err: any, req: any, res: any, next: () => void) => {
-  console.log('error:',err)
-  const statusCode = err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
-  return res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
-});
+app.use(errorHandler);
