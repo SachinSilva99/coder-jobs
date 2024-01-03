@@ -1,7 +1,7 @@
 import tryCatch from "../utils/TryCatch";
 import {Request, Response} from "express";
 import {ICompanyPackage} from "../types/SchemaTypes";
-import {CompanyPackageModel} from "../model/CompanyPackage";
+import {CompanyPackageModel} from "../model/CompanyPackage.model";
 import {StandardResponse} from "../dto/StandardResponse";
 
 export const createCompanyPackage = tryCatch(async (req: Request, res: Response) => {

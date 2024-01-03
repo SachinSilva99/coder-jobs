@@ -1,6 +1,6 @@
-import {Document} from "mongoose";
-import {ObjectId} from "mongodb";
-import {JobType, Modality, PaymentMethod} from "../enums/Enums";
+import {Document, Types} from "mongoose";
+
+import {JobType, Modality, PaymentMethod, UserType} from "../enums/Enums";
 
 
 export interface IJobCategory extends Document {
@@ -14,6 +14,7 @@ export interface IUser extends Document {
   lName: string,
   email: string,
   password: string
+  userType: UserType,
   deleteStatus: boolean
 }
 
@@ -24,7 +25,7 @@ export interface IJobSeeker extends Document {
   avatar: string,
   jobSeekerContact: string,
   gender: string,
-  user: ObjectId,
+  user: Types.ObjectId,
   deleteStatus: boolean
 }
 
@@ -33,40 +34,34 @@ export interface ICompanyPackage extends Document {
   description: string,
   price: number,
   paymentMethod: PaymentMethod,
-  deleteStatus:boolean
+  deleteStatus: boolean
 }
 
 export interface ICompany extends Document {
   companyName: string,
   companyLogo: string,
   companySize: number,
-  user: ObjectId
+  user: Types.ObjectId,
+  preferredPackage: Types.ObjectId,
 }
-
-export interface IPackage extends Document {
-  name: string,
-  description: string,
-  price: number,
-}
-
 
 export interface IOpportunity extends Document {
-  company: ObjectId,
-  jobSeeker: ObjectId,
+  company: Types.ObjectId,
+  jobSeeker: Types.ObjectId,
 }
 
 export interface IVacancy extends Document {
-  company: ObjectId,
+  company: Types.ObjectId,
   jobTitle: string,
-  category: ObjectId,
-  subCategory: ObjectId,
+  category: string,
+  subCategory: string,
   jobType: JobType,
   modality: Modality,
   salary?: number
 }
 
 export interface IPayment extends Document {
-  company: ObjectId,
+  company: Types.ObjectId,
   paidDate: Date,
   status: string,
   paymentMethod: string,
@@ -75,8 +70,8 @@ export interface IPayment extends Document {
 }
 
 export interface ISubmission extends Document {
-  vacancy: ObjectId,
-  jobSeeker: ObjectId,
+  vacancy: Types.ObjectId,
+  jobSeeker: Types.ObjectId,
   status: string
 }
 

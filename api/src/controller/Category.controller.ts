@@ -20,10 +20,7 @@ export const updateJobCategory = tryCatch(async (req: Request, res: Response, ne
     res.status(404).send(response);
     return;
   }
-  await JobCategoryModel.findOneAndUpdate({_id: foundCategory._id}, {
-    name: category.name,
-    subCategories: category.subCategories
-  });
+  await JobCategoryModel.findOneAndUpdate({_id: foundCategory._id}, category);
   res.status(204).send("OK");
 });
 
