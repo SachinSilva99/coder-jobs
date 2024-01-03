@@ -4,7 +4,7 @@ import {StandardResponse} from "../dto/StandardResponse";
 import JobSeekerModel from "../model/JobSeeker.model";
 import tryCatch from "../utils/TryCatch";
 
-export const createJobSeeker = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
+export const createJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const jobSeeker: IJobSeeker = req.body;
   const jobSeekerModel = new JobSeekerModel(jobSeeker);
   const savedJobSeeker = await jobSeekerModel.save();
@@ -16,7 +16,7 @@ export const createJobSeeker = tryCatch(async (req: Request, res: Response, next
   res.status(201).send(response)
 });
 
-export const updateJobSeeker = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
+export const updateJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const foundJobSeeker = await JobSeekerModel.findOne({_id: req.params.id, deleteStatus: false});
   if (!foundJobSeeker) {
     res.status(404).send({
@@ -29,7 +29,7 @@ export const updateJobSeeker = tryCatch(async (req: Request, res: Response, next
   res.status(204).send();
 });
 
-export const getJobSeeker = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
+export const getJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const jobSeeker = await JobSeekerModel.findOne({_id: req.params.id, deleteStatus: false});
   if (!jobSeeker) {
     res.status(404).send({
@@ -46,7 +46,7 @@ export const getJobSeeker = tryCatch(async (req: Request, res: Response, next: (
   res.status(201).send(response)
 });
 
-export const deleteJobSeeker = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
+export const deleteJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const jobSeeker = await JobSeekerModel.findOne({_id: req.params.id, deleteStatus: false});
   if (!jobSeeker) {
     res.status(404).send({
@@ -59,7 +59,7 @@ export const deleteJobSeeker = tryCatch(async (req: Request, res: Response, next
   res.status(204).send();
 });
 
-export const getAllJobSeekers = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
+export const getAllJobSeekers = tryCatch(async (req: Request, res: Response) => {
   const jobSeekers = await JobSeekerModel.find({deleteStatus: false});
   const response: StandardResponse<any> = {
     statusCode: 200,

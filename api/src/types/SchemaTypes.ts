@@ -1,5 +1,6 @@
 import {Document} from "mongoose";
 import {ObjectId} from "mongodb";
+import {JobType, Modality, PaymentMethod} from "../enums/Enums";
 
 
 export interface IJobCategory extends Document {
@@ -13,7 +14,7 @@ export interface IUser extends Document {
   lName: string,
   email: string,
   password: string
-  deleteStatus:boolean
+  deleteStatus: boolean
 }
 
 export interface IJobSeeker extends Document {
@@ -24,6 +25,14 @@ export interface IJobSeeker extends Document {
   jobSeekerContact: string,
   gender: string,
   user: ObjectId,
+  deleteStatus: boolean
+}
+
+export interface ICompanyPackage extends Document {
+  name: string,
+  description: string,
+  price: number,
+  paymentMethod: PaymentMethod,
   deleteStatus:boolean
 }
 
@@ -44,20 +53,6 @@ export interface IPackage extends Document {
 export interface IOpportunity extends Document {
   company: ObjectId,
   jobSeeker: ObjectId,
-
-}
-
-export enum JobType {
-  FULL_TIME = "FULL_TIME",
-  PART_TIME = "PART_TIME",
-  CONTRACT = "CONTRACT",
-  INTERNSHIP = "INTERNSHIP",
-}
-
-export enum Modality {
-  IN_SITE = "IN_SITE",
-  REMOTE = "REMOTE",
-  HYBRID = "HYBRID",
 }
 
 export interface IVacancy extends Document {

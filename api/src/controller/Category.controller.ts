@@ -36,6 +36,6 @@ export const getAllJobCategories = tryCatch(async (req: Request, res: Response, 
 export const getCategory = tryCatch(async (req: Request, res: Response, next: (e: any) => void) => {
   const category = req.params.category;
   const categories = await JobCategoryModel.find({name: category});
-  const response: StandardResponse<any> = {statusCode: 201, msg: "OK", data: categories}
+  const response: StandardResponse<any> = {statusCode: 200, msg: "OK", data: categories}
   res.status(200).send(response);
 });
