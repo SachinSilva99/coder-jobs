@@ -6,6 +6,9 @@ import {CompanyModel} from "../model/Company.model";
 import UserModel from "../model/User.model";
 import {UserType} from "../enums/Enums";
 
+/**
+ * Create a company
+ */
 export const createCompany = tryCatch(async (req: Request, res: Response) => {
   const company: ICompany = req.body;
   const existingUser = await UserModel.findOne({
@@ -29,7 +32,9 @@ export const createCompany = tryCatch(async (req: Request, res: Response) => {
   }
   res.status(201).send(response);
 });
-
+/**
+ * Get a company
+ */
 export const getCompany = tryCatch(async (req: Request, res: Response) => {
   const companyId = req.params.id;
   const company = await CompanyModel.find({
@@ -50,6 +55,9 @@ export const getCompany = tryCatch(async (req: Request, res: Response) => {
   }
   res.status(200).send(response);
 });
+/**
+ * Update a company
+ */
 export const updateCompany = tryCatch(async (req: Request, res: Response) => {
   const companyId = req.params.id;
   const company: ICompany = req.body;
@@ -68,15 +76,23 @@ export const updateCompany = tryCatch(async (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-
+/**
+ * Get all companies
+ */
 export const getAllCompanies = tryCatch(async (req: Request, res: Response) => {
+  const query: any = req.query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
   const companies = await CompanyModel.find({
     deleteStatus: false,
-  });
+  }).limit(size).skip(size * (page - 1));
+  const countDocuments = await CompanyModel.countDocuments({deleteStatus:false});
+  const pageCount = Math.ceil(countDocuments / size);
   const response: StandardResponse<any> = {
     statusCode: 200,
     msg: "OK",
-    data: companies
+    data: companies,
+    pageCount: pageCount
   }
   res.status(200).send(response);
 });

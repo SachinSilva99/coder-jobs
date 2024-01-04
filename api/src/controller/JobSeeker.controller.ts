@@ -3,6 +3,7 @@ import {IJobSeeker} from "../types/SchemaTypes";
 import {StandardResponse} from "../dto/StandardResponse";
 import JobSeekerModel from "../model/JobSeeker.model";
 import tryCatch from "../utils/TryCatch";
+import {CompanyModel} from "../model/Company.model";
 
 export const createJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const jobSeeker: IJobSeeker = req.body;
@@ -60,11 +61,17 @@ export const deleteJobSeeker = tryCatch(async (req: Request, res: Response) => {
 });
 
 export const getAllJobSeekers = tryCatch(async (req: Request, res: Response) => {
-  const jobSeekers = await JobSeekerModel.find({deleteStatus: false});
+  const query: any = req.query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
+  const jobSeekers = await JobSeekerModel.find({deleteStatus: false}).limit(size).skip(size * (page - 1));
+  const countDocuments = await JobSeekerModel.countDocuments({deleteStatus: false});
+  const pageCount = Math.ceil(countDocuments / size);
   const response: StandardResponse<any> = {
     statusCode: 200,
     msg: "OK",
-    data: jobSeekers
+    data: jobSeekers,
+    pageCount: pageCount
   }
   res.status(200).send(response);
 });

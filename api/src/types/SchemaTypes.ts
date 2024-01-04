@@ -58,7 +58,8 @@ export interface IVacancy extends Document {
   subCategory: string,
   jobType: JobType,
   modality: Modality,
-  salary?: number
+  salary?: number,
+  deleteStatus: boolean
 }
 
 export interface IPayment extends Document {
