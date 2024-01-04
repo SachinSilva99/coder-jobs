@@ -1,10 +1,10 @@
 import {Router} from "express";
-import {createCompany} from "../controller/Company.controller";
+import {createCompany, getAllCompanies, getCompany, updateCompany} from "../controller/Company.controller";
 
 
 const router = Router();
 router.post("/", createCompany);
-/*router.get("/:category", getCategory);
-router.get("/", getAllJobCategories);
-router.put("/:category", updateJobCategory);*/
+router.put("/:id", updateCompany);
+router.get("/", getAllCompanies);
+router.get("/:id", getCompany);
 export default router;

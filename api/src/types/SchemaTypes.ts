@@ -43,6 +43,7 @@ export interface ICompany extends Document {
   companySize: number,
   user: Types.ObjectId,
   preferredPackage: Types.ObjectId,
+  deleteStatus: boolean
 }
 
 export interface IOpportunity extends Document {
