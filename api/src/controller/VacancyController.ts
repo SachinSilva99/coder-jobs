@@ -90,6 +90,7 @@ export const getAllVacanciesOfCompany = tryCatch(async (req: Request, res: Respo
     company: req.params.companyId,
     deleteStatus: false
   });
+
   const pageCount = Math.ceil(countDocuments / size);
   const response: StandardResponse<any> = {
     statusCode: 200,

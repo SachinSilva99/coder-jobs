@@ -20,6 +20,7 @@ import RegisterFormJobSeeker from "./pages/register/RegisterFormJobSeeker.tsx";
 import RegisterUser from "./pages/register/RegisterUser.tsx";
 import RegisterFormCompany from "./pages/register/RegisterFormCompany.tsx";
 import Payments from "./pages/admin/payemnts/Payments.tsx";
+import CompanyHero from "./pages/company/CompanyHero.tsx";
 
 
 function App() {
@@ -28,18 +29,28 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          {/*job seeker*/}
           <Route path="/job-seeker" element={<JobSeeker/>}>
             <Route path="" element={<HomeHero/>}/>
             <Route path="opportunities" element={<Opportunities/>}/>
             <Route path="submissions" element={<Submissions/>}/>
             <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
+          {/*company logged in*/}
+          <Route path="/company" element={<JobSeeker/>}>
+            <Route path="" element={<CompanyHero/>}/>
+            <Route path="opportunities" element={<Opportunities/>}/>
+            <Route path="submissions" element={<Submissions/>}/>
+            <Route path="profile" element={<JobSeekerProfile/>}/>
+          </Route>
+          {/*logins and register*/}
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}>
             <Route path="job-seeker" element={<RegisterFormJobSeeker/>}/>
             <Route path="" element={<RegisterUser/>}/>
             <Route path="company" element={<RegisterFormCompany/>}/>
           </Route>
+          {/*admin*/}
           <Route path="/admin" element={<Admin/>}>
             <Route path="" element={<Stats/>}/>
             <Route path="users" element={<Users/>}/>
