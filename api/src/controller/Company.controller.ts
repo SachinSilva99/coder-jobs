@@ -55,6 +55,7 @@ export const getCompany = tryCatch(async (req: Request, res: Response) => {
   }
   res.status(200).send(response);
 });
+
 /**
  * Update a company
  */

@@ -2,7 +2,7 @@ import {IoLocationSharp} from "react-icons/io5";
 import {FaMoneyBill, FaSuitcase} from "react-icons/fa";
 import {SiHashnode} from "react-icons/si";
 
-const OpportunityCard = () => {
+const RequestCard = () => {
   return (
     <div
       className='border border-slate-300 rounded-lg hover:bg-blue-100 hover:duration-500 cursor-pointer'>
@@ -82,4 +82,4 @@ const OpportunityCard = () => {
 };
 
 
-export default OpportunityCard;
+export default RequestCard;

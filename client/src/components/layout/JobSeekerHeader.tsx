@@ -13,11 +13,11 @@ const JobSeekerHeader = () => {
         <Link to=''>
           <div className='custom-nav-hover'>Jobs</div>
         </Link>
-        <Link to='opportunities'>
-          <div className='custom-nav-hover'>Opportunities</div>
+        <Link to='requests'>
+          <div className='custom-nav-hover'>Requests by Companies</div>
         </Link>
-        <Link to='submissions'>
-          <div className='custom-nav-hover'>Submissions</div>
+        <Link to='applications'>
+          <div className='custom-nav-hover'>Applications</div>
         </Link>
         <Link to='profile'>
           <div className='custom-nav-hover rounded-full h-10 w-10'>

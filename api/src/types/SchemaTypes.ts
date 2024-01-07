@@ -59,7 +59,9 @@ export interface IVacancy extends Document {
   jobType: JobType,
   modality: Modality,
   salary?: number,
+  endingDate:Date,
   deleteStatus: boolean
+
 }
 
 export interface IPayment extends Document {
@@ -77,5 +79,9 @@ export interface ISubmission extends Document {
   status: string
 }
 
+export interface IApplication extends Document {
+  jobSeeker:Types.ObjectId,
+  vacancy:Types.ObjectId,
+}
 
 

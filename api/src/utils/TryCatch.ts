@@ -4,7 +4,7 @@ const tryCatch = (controller: any) => async (req: Request, res: Response, next: 
   try {
     await controller(req, res);
   } catch (er) {
-    return next(er)
+    return next(er);
   }
 }
 export default tryCatch;

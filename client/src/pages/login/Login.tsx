@@ -7,8 +7,8 @@ import {RiLockPasswordFill} from "react-icons/ri";
 
 const Login = () => {
   return (
-    <div className="flex px-4 py-2 pd:mx-8 lg:px-16 min-h-[80vh] md:min-h-[100vh] ">
-      <div className="left flex flex-col md:w-[50vw]  ">
+    <div className="flex px-4 py-2 pd:mx-8 lg:px-16 min-h-[80vh] md:min-h-[100vh]">
+      <div className="left flex flex-col md:w-[50vw]">
         <h1 className="text-2xl my-8">Job Seeker</h1>
         <div className='flex md:items-center md:justify-center h-full'>
           <div className='flex md:items-center md:justify-center w-full md:w-2/3 '>

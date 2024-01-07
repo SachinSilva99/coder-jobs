@@ -1,4 +1,3 @@
-import JobCard from "../../components/cards/JobCard";
 import JobSeekerCard from "../../components/cards/JobSeekerCard.tsx";
 
 function CompanyHero() {

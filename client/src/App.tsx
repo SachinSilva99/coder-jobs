@@ -12,8 +12,8 @@ import Register from "./pages/register/Register.tsx";
 import Home from "./pages/Home.tsx";
 import JobSeeker from "./pages/job-seeker/JobSeeker.tsx";
 import HomeHero from "./pages/shared/HomeHero.tsx";
-import Opportunities from "./pages/job-seeker/opportunities/Opportunities.tsx";
-import Submissions from "./pages/job-seeker/submissions/Submissions.tsx";
+import Requests from "./pages/job-seeker/opportunities/Requests.tsx";
+import Applications from "./pages/job-seeker/applications/Applications.tsx";
 import Error from "./pages/error/Error.tsx";
 import JobSeekerProfile from "./pages/job-seeker/profile/JobSeekerProfile.tsx";
 import RegisterFormJobSeeker from "./pages/register/RegisterFormJobSeeker.tsx";
@@ -21,6 +21,7 @@ import RegisterUser from "./pages/register/RegisterUser.tsx";
 import RegisterFormCompany from "./pages/register/RegisterFormCompany.tsx";
 import Payments from "./pages/admin/payemnts/Payments.tsx";
 import CompanyHero from "./pages/company/CompanyHero.tsx";
+import Company from "./pages/company/Company.tsx";
 
 
 function App() {
@@ -32,15 +33,15 @@ function App() {
           {/*job seeker*/}
           <Route path="/job-seeker" element={<JobSeeker/>}>
             <Route path="" element={<HomeHero/>}/>
-            <Route path="opportunities" element={<Opportunities/>}/>
-            <Route path="submissions" element={<Submissions/>}/>
+            <Route path="requests" element={<Requests/>}/>
+            <Route path="applications" element={<Applications/>}/>
             <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
           {/*company logged in*/}
-          <Route path="/company" element={<JobSeeker/>}>
+          <Route path="/company" element={<Company/>}>
             <Route path="" element={<CompanyHero/>}/>
-            <Route path="opportunities" element={<Opportunities/>}/>
-            <Route path="submissions" element={<Submissions/>}/>
+            <Route path="opportunities" element={<Requests/>}/>
+            <Route path="submissions" element={<Applications/>}/>
             <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
           {/*logins and register*/}

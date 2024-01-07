@@ -13,12 +13,14 @@ const CompanyHeader = () => {
         <Link to=''>
           <div className='custom-nav-hover'>Job Seekers</div>
         </Link>
-        <Link to='opportunities'>
-          <div className='custom-nav-hover'>Opportunities</div>
-        </Link>
         <Link to='submissions'>
           <div className='custom-nav-hover'>Submissions</div>
         </Link>
+
+        <Link to='requests'>
+          <div className='custom-nav-hover'>Requests</div>
+        </Link>
+
         <Link to='profile'>
           <div className='custom-nav-hover rounded-full h-10 w-10'>
             <img
