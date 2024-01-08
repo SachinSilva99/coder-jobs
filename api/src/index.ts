@@ -9,6 +9,7 @@ import errorHandler from "./middlewares/ErrorHandler";
 import companyPackageRoute from "./routes/CompanyPackage.route";
 import vacancyRoute from "./routes/Vacancy.route";
 import companyRoute from "./routes/Company.route";
+import requestRoute from "./routes/Request.route";
 
 env.config();
 
@@ -27,6 +28,7 @@ app.use("/api/v1/category", jobCategoryRoute);
 app.use("/api/v1/company-package", companyPackageRoute);
 app.use("/api/v1/vacancy", vacancyRoute);
 app.use("/api/v1/company", companyRoute);
+app.use("/api/v1/request", requestRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${process.env.PORT}`);

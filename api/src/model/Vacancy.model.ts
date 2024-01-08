@@ -11,8 +11,8 @@ const vacancySchema = new Schema<IVacancy>({
   jobType: {type: String, enum: JobType, required: true},
   modality: {type: String, enum: Modality, required: true},
   salary: {type: Number},
+  endingDate: {type: Date, required: true},
   deleteStatus: {type: Boolean, default: false},
-  endingDate: {type: Date, required: true}
 }, {timestamps: true});
 const VacancyModel = model("Vacancy", vacancySchema);
 export default VacancyModel;

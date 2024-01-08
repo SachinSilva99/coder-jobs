@@ -5,10 +5,11 @@ import {
   getCategory,
   updateJobCategory
 } from "../controller/Category.controller";
+import {verifyToken} from "../middlewares/VerifyToken";
 
 const router = Router();
-router.post("/", createJobCategory);
+router.post("/",verifyToken, createJobCategory);
 router.get("/:category", getCategory);
 router.get("/", getAllJobCategories);
-router.put("/:category", updateJobCategory);
+router.put("/:category",verifyToken, updateJobCategory);
 export default router;

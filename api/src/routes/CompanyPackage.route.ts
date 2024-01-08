@@ -6,11 +6,12 @@ import {
   updateCompanyPackage,
   deleteCompanyPackage
 } from "../controller/CompanyPackage.controller";
+import {verifyToken} from "../middlewares/VerifyToken";
 
 const router = Router();
-router.post("/", createCompanyPackage);
+router.post("/",verifyToken, createCompanyPackage);
 router.get("/:id", getCompanyPackage);
 router.get("/", getAllCompanyPackage);
-router.patch("/:id", updateCompanyPackage);
-router.delete("/:id", deleteCompanyPackage);
+router.patch("/:id", verifyToken,updateCompanyPackage);
+router.delete("/:id",verifyToken, deleteCompanyPackage);
 export default router;

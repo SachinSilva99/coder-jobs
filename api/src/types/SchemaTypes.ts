@@ -1,4 +1,4 @@
-import {Document, Types} from "mongoose";
+import {Document, Schema, Types} from "mongoose";
 
 import {JobType, Modality, PaymentMethod, UserType} from "../enums/Enums";
 
@@ -16,6 +16,17 @@ export interface IUser extends Document {
   password: string
   userType: UserType,
   deleteStatus: boolean
+}
+
+export interface IRequest extends Document {
+  company: Types.ObjectId,
+  jobTitle: string,
+  description: string,
+  salary?:number
+  jobSeeker: Types.ObjectId,
+  status: string,
+  view: boolean,
+  deleteStatus: boolean,
 }
 
 export interface IJobSeeker extends Document {
@@ -59,7 +70,7 @@ export interface IVacancy extends Document {
   jobType: JobType,
   modality: Modality,
   salary?: number,
-  endingDate:Date,
+  endingDate: Date,
   deleteStatus: boolean
 
 }
@@ -80,8 +91,8 @@ export interface ISubmission extends Document {
 }
 
 export interface IApplication extends Document {
-  jobSeeker:Types.ObjectId,
-  vacancy:Types.ObjectId,
+  jobSeeker: Types.ObjectId,
+  vacancy: Types.ObjectId,
 }
 
 
