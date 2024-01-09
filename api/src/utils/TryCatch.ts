@@ -1,9 +1,10 @@
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 
-const tryCatch = (controller: any) => async (req: Request, res: Response, next: (e: any) => void) => {
+const tryCatch = (controller: any) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     await controller(req, res);
   } catch (er) {
+    console.log("catch error")
     return next(er);
   }
 }

@@ -6,6 +6,8 @@ import {StandardResponse} from "../dto/StandardResponse";
 import bcrypt from 'bcrypt';
 import process from "process";
 import jwt, {Secret} from "jsonwebtoken";
+import {NotFoundError} from "../types/error/NotFoundError";
+import {UnAuthorizedError} from "../types/error/UnAuthorizedError";
 
 export const userSignUp = tryCatch(async (req: Request, res: Response) => {
   const user: IUser = req.body;
@@ -19,12 +21,10 @@ export const userSignUp = tryCatch(async (req: Request, res: Response) => {
 export const login = tryCatch(async (req: Request, res: Response, next: express.NextFunction) => {
     const {email, password} = req.body;
     const user = await UserModel.findOne({email: email, deleteStatus: false});
-    console.log(user)
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        const response: StandardResponse<any> = {statusCode: 401, msg: "Invalid Credentials"};
-        return res.status(401).send(response);
+        throw new UnAuthorizedError("InValid Credentials")
       }
       const expiresIn = "1w";
       user.password = "";
@@ -42,7 +42,6 @@ export const login = tryCatch(async (req: Request, res: Response, next: express.
       });
       return;
     }
-    const response: StandardResponse<any> = {statusCode: 401, msg: "User not found"};
-    res.status(404).send(response);
+    throw new NotFoundError("User not found");
   }
 )

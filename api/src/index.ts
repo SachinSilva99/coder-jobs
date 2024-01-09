@@ -29,8 +29,8 @@ app.use("/api/v1/company-package", companyPackageRoute);
 app.use("/api/v1/vacancy", vacancyRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/request", requestRoute);
-
+app.use(errorHandler);
 app.listen(process.env.PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${process.env.PORT}`);
 });
-app.use(errorHandler);
+

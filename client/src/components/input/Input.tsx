@@ -8,8 +8,9 @@ interface Props {
   placeholder?: string,
   optional?: boolean,
   icon?: ReactNode;
-  disabled?:boolean;
-  value?:string;
+  disabled?: boolean;
+  value?: string;
+  onChange?(e: any): void;
 }
 
 
@@ -29,6 +30,7 @@ function Input(props: Props) {
           value={props.value}
           placeholder={props.placeholder}
           disabled={props.disabled}
+          onChange={props.onChange}
         />
       </div>
     </div>
