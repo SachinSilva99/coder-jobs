@@ -11,9 +11,7 @@ import Swal from "sweetalert2";
 const Login = () => {
   const [formData, setFormData] = useState<{ email: string, password: string }>({email: "", password: ""});
   const [errors, setErrors] = useState<{ email: string; password: string }>({email: "", password: ""});
-  const handleOnChange = (e: any) => {
-    const {id, value} = e.target;
-    setFormData({...formData, [id]: value});
+  const validateInput = (id: string, value: string) => {
     switch (id) {
       case "email":
         setErrors({...errors, email: isEmailValid(value) ? "" : "Invalid email address"});
@@ -29,20 +27,20 @@ const Login = () => {
       default:
         break;
     }
-
+  };
+  const handleOnChange = (e: any) => {
+    const {id, value} = e.target;
+    setFormData({...formData, [id]: value});
+    validateInput(id, value);
   };
 
   function loginBtnOnClick() {
-    if (!isEmailValid(formData.email) || !isPasswordValid(formData.password)) {
-      let errorMessage = "";
+    const emailValid = isEmailValid(formData.email);
+    const passwordValid = isPasswordValid(formData.password);
 
-      if (!isEmailValid(formData.email)) {
-        errorMessage += "Invalid email address. ";
-      }
-
-      if (!isPasswordValid(formData.password)) {
-        errorMessage += "Password must be at least 6 characters long and contain at least one uppercase letter and one special character. ";
-      }
+    if (!emailValid || !passwordValid) {
+      const errorMessage = `${!emailValid ? "Invalid email address. " : ""}
+      ${!passwordValid ? "Password must be at least 6 characters long and contain at least one uppercase letter and one special character. " : ""}`;
       Swal.fire({
         icon: "error",
         title: "Invalid Inputs",
@@ -87,8 +85,8 @@ const Login = () => {
               <a className="self-end text-zinc-600 my-4" href="#">
                 Forgot password?
               </a>
-              {errors.email && <p className="text-red-500 my-2">{errors.email}</p>}
-              {errors.password && <p className="text-red-500 my-2">{errors.password}</p>}
+              {errors.email && <p className="text-red-500 my-2 text-sm">{errors.email}</p>}
+              {errors.password && <p className="text-red-500 my-2 text-sm">{errors.password}</p>}
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>
