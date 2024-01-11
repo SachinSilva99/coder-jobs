@@ -1,9 +1,21 @@
 import {Link} from "react-router-dom";
 import {MdLogout} from "react-icons/md";
 import logo from "../../assets/logo.png";
+import {useDispatch} from "react-redux";
+import {deleteUserFailure, deleteUserStart, deleteUserSuccess} from "../../redux/user/UserSlice.ts";
 
 
 const CompanyHeader = () => {
+  const dispatch = useDispatch();
+  const handleLogoutOnClick = () => {
+    console.log("hee")
+    try {
+      dispatch(deleteUserStart());
+      dispatch(deleteUserSuccess());
+    } catch (e) {
+      dispatch(deleteUserFailure(e));
+    }
+  }
   return (
     <header className='flex w-full h-[10vh] justify-between px-4 pd:mx-8 lg:px-16'>
       <div className="left-nav flex items-center justify-start ">
@@ -29,7 +41,9 @@ const CompanyHeader = () => {
           </div>
         </Link>
         <Link to='/' className='hover:text-blue-500'>
-          <MdLogout size={25}/>
+          <div onClick={handleLogoutOnClick}>
+            <MdLogout size={25}/>
+          </div>
         </Link>
       </div>
     </header>

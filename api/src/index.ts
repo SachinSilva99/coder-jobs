@@ -10,7 +10,7 @@ import companyPackageRoute from "./routes/CompanyPackage.route";
 import vacancyRoute from "./routes/Vacancy.route";
 import companyRoute from "./routes/Company.route";
 import requestRoute from "./routes/Request.route";
-
+import cors from 'cors';
 env.config();
 
 mongoose
@@ -19,7 +19,9 @@ mongoose
   .catch((er) => console.log(er));
 
 const app = express();
-
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/auth", authRoute);

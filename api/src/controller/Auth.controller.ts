@@ -20,6 +20,7 @@ export const userSignUp = tryCatch(async (req: Request, res: Response) => {
 
 export const login = tryCatch(async (req: Request, res: Response, next: express.NextFunction) => {
     const {email, password} = req.body;
+  console.log(req.body)
     const user = await UserModel.findOne({email: email, deleteStatus: false});
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);

@@ -1,31 +1,35 @@
 import loginimg from "../../assets/loginimg.png";
 
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Input from "../../components/input/Input.tsx";
 import {MdEmail} from "react-icons/md";
 import {RiLockPasswordFill} from "react-icons/ri";
 import {useState} from "react";
 import {isEmailValid, isPasswordValid} from "../../util/Validate.ts";
 import Swal from "sweetalert2";
+import {signInFailure, signInStart, signInSuccess} from "../../redux/user/UserSlice.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../redux/Store.ts";
+import Cookies from "js-cookie";
+import {loginUser} from "../../service/API_Service.ts";
+import {TOKEN} from "../../util/TOKEN.ts";
 
 const Login = () => {
   const [formData, setFormData] = useState<{ email: string, password: string }>({email: "", password: ""});
   const [errors, setErrors] = useState<{ email: string; password: string }>({email: "", password: ""});
+  const {loading, error} = useSelector((state: RootState) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const validateInput = (id: string, value: string) => {
-    switch (id) {
-      case "email":
-        setErrors({...errors, email: isEmailValid(value) ? "" : "Invalid email address"});
-        break;
-      case "password":
-        setErrors({
-          ...errors,
-          password: isPasswordValid(value)
-            ? ""
-            : "Password must be at least 6 characters long and contain at least one uppercase letter and one special character",
-        });
-        break;
-      default:
-        break;
+    if (id === "email") {
+      setErrors({...errors, email: isEmailValid(value) ? "" : "Invalid email address"});
+    } else if (id === "password") {
+      setErrors({
+        ...errors,
+        password: isPasswordValid(value)
+          ? ""
+          : "Password must be at least 6 characters long and contain at least one uppercase letter and one special character",
+      });
     }
   };
   const handleOnChange = (e: any) => {
@@ -34,7 +38,9 @@ const Login = () => {
     validateInput(id, value);
   };
 
-  function loginBtnOnClick() {
+  async function loginBtnOnClick(e) {
+    e.preventDefault();
+
     const emailValid = isEmailValid(formData.email);
     const passwordValid = isPasswordValid(formData.password);
 
@@ -48,7 +54,24 @@ const Login = () => {
       });
       return;
     }
-    // TODO: Send data to the backend
+    dispatch(signInStart());
+    try {
+      const userData = await loginUser(formData);
+      Cookies.set(TOKEN, userData.accessToken);
+      dispatch(signInSuccess(userData.user));
+      Swal.fire({
+        icon: "success",
+        title: "Logged Successfully",
+        text: `Welcome ${userData.user.username}`
+      });
+      if (userData.user.userType === "COMPANY") {
+        navigate('/company');
+      }
+
+    } catch (error) {
+      console.log(error);
+      dispatch(signInFailure(error));
+    }
   }
 
   return (
@@ -85,8 +108,8 @@ const Login = () => {
               <a className="self-end text-zinc-600 my-4" href="#">
                 Forgot password?
               </a>
-              {errors.email && <p className="text-red-500 my-2 text-sm">{errors.email}</p>}
-              {errors.password && <p className="text-red-500 my-2 text-sm">{errors.password}</p>}
+              {errors.email && <p className="text-red-500 my-1 text-sm">{errors.email}</p>}
+              {errors.password && <p className="text-red-500 my-1 text-sm">{errors.password}</p>}
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>
