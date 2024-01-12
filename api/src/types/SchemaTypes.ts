@@ -65,14 +65,15 @@ export interface IOpportunity extends Document {
 export interface IVacancy extends Document {
   company: Types.ObjectId,
   jobTitle: string,
+  description: string,
   category: string,
   subCategory: string,
   jobType: JobType,
   modality: Modality,
   salary?: number,
   endingDate: Date,
+  startingDate: Date,
   deleteStatus: boolean
-
 }
 
 export interface IPayment extends Document {

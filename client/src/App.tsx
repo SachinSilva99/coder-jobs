@@ -22,6 +22,8 @@ import RegisterFormCompany from "./pages/register/RegisterFormCompany.tsx";
 import Payments from "./pages/admin/payemnts/Payments.tsx";
 import CompanyHero from "./pages/company/CompanyHero.tsx";
 import Company from "./pages/company/Company.tsx";
+import ApplicationsReceived from "./pages/company/applications/ApplicationsReceived.tsx";
+import MakeVacancy from "./pages/company/make-vacancy/MakeVacancy.tsx";
 
 
 function App() {
@@ -40,8 +42,9 @@ function App() {
           {/*company logged in*/}
           <Route path="/company" element={<Company/>}>
             <Route path="" element={<CompanyHero/>}/>
-            <Route path="opportunities" element={<Requests/>}/>
-            <Route path="submissions" element={<Applications/>}/>
+            <Route path="make-vacancy" element={<MakeVacancy/>}/>
+            <Route path="requests" element={<Requests/>}/>
+            <Route path="applications" element={<ApplicationsReceived/>}/>
             <Route path="profile" element={<JobSeekerProfile/>}/>
           </Route>
           {/*logins and register*/}

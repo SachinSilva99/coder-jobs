@@ -8,7 +8,7 @@ import {deleteUserFailure, deleteUserStart, deleteUserSuccess} from "../../redux
 const CompanyHeader = () => {
   const dispatch = useDispatch();
   const handleLogoutOnClick = () => {
-    console.log("hee")
+
     try {
       dispatch(deleteUserStart());
       dispatch(deleteUserSuccess());
@@ -25,8 +25,11 @@ const CompanyHeader = () => {
         <Link to=''>
           <div className='custom-nav-hover'>Job Seekers</div>
         </Link>
-        <Link to='submissions'>
-          <div className='custom-nav-hover'>Submissions</div>
+        <Link to='make-vacancy'>
+          <div className='custom-nav-hover'>Make Vacancy</div>
+        </Link>
+        <Link to='applications'>
+          <div className='custom-nav-hover'>Applications</div>
         </Link>
 
         <Link to='requests'>

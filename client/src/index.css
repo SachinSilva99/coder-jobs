@@ -6,7 +6,7 @@
 
 @layer components {
     .custom-nav-hover {
-        @apply hover:border-b-2 hover:border-b-slate-800 border-2 border-transparent hover:duration-700;
+        @apply hover:border-b-2 hover:border-b-slate-800 border-2 border-transparent hover:duration-700 focus:border-b-slate-800;
     }
 }
 
