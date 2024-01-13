@@ -32,7 +32,7 @@ const Login = () => {
       });
     }
   };
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e) => {
     const {id, value} = e.target;
     setFormData({...formData, [id]: value});
     validateInput(id, value);

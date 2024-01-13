@@ -6,7 +6,7 @@ import {JobType, Modality} from "../enums/Enums";
 const vacancySchema = new Schema<IVacancy>({
   company: {type: Schema.Types.ObjectId, required: true, ref: "Company"},
   jobTitle: {type: String, required: true, minlength: 5},
-  descriprion:{type:String, required:true, minLength:50},
+  description:{type:String, required:true, minLength:50},
   category: {type: String, required: true},
   subCategory: {type: String, required: true},
   jobType: {type: String, enum: JobType, required: true},
