@@ -3,9 +3,14 @@ import {FaSuitcase} from 'react-icons/fa';
 import {useEffect, useState} from 'react';
 import {Category} from '../../../types/Category.ts';
 import {getAllCategories} from '../../../service/API_Service.ts';
+import Cookies from "js-cookie";
+import {TOKEN} from "../../../util/TOKEN.ts";
+import {createVacancy, updateVacancy} from "../../../service/company/CompanyService.ts";
+import {useLocation} from "react-router-dom";
+import {undefined} from "zod";
 
 export interface Vacancy {
-  company: string,
+  _id?: string,
   jobTitle: string,
   description: string,
   category: string,
@@ -13,33 +18,43 @@ export interface Vacancy {
   jobType: string,
   modality: string,
   salary?: number,
-  endingDate: Date,
-  startingDate: Date,
+  endingDate: string,
+  startingDate: string,
 }
 
 function MakeVacancy() {
-  const [formData, setFormData] = useState<Vacancy>({
-    company: '',
-    jobTitle: '',
-    description: '',
-    category: '',
-    subCategory: '',
-    jobType: '',
-    modality: '',
-    endingDate: new Date(),
-    startingDate: new Date(),
-  });
+  const location = useLocation();
+  const vacancy: Vacancy = location?.state?.vacancy;
+  const [formData, setFormData] = useState<Vacancy>(
+    vacancy ? vacancy : {
+      category: "",
+      description: "",
+      endingDate: '',
+      jobTitle: "",
+      jobType: "",
+      modality: "",
+      salary: 0,
+      startingDate: '',
+      subCategory: "",
+    });
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [subCategories, setSubCategories] = useState<string[]>([]);
   useEffect(() => {
     const getCategories = async () => {
       const categories: Category[] = await getAllCategories();
       setCategories(categories);
+      const selectedCategoryObject = categories.find(
+        (category) => category.name === formData.category
+      );
+      const subCategoryNames: string[] = selectedCategoryObject?.subCategories || [];
+      setSubCategories(subCategoryNames);
     };
+
     getCategories()
       .then((r) => console.log(r))
       .catch((e) => console.error(e));
-  }, []);
+  }, [formData.category]);
 
   const handleOnChange = (e) => {
     const {id, value} = e.target;
@@ -51,8 +66,19 @@ function MakeVacancy() {
       );
       const subCategoryNames: string[] = selectedCategoryObject?.subCategories || [];
       setSubCategories(subCategoryNames);
+
     }
   };
+
+  async function submitForm() {
+    if (vacancy && vacancy._id) {
+      const response = await updateVacancy(formData, Cookies.get(TOKEN), vacancy._id);
+      console.log(response);
+    } else {
+      const response = await createVacancy(formData, Cookies.get(TOKEN));
+      console.log(response)
+    }
+  }
 
   return (
     <div className="px-4 md:px-8 lg:px-16 min-h-[90vh]">
@@ -62,6 +88,7 @@ function MakeVacancy() {
           name={'jobTitle'}
           label={'Job Title'}
           type={'text'}
+          value={formData.jobTitle}
           placeholder={'Enter job title'}
           icon={<FaSuitcase/>}
           onChange={handleOnChange}
@@ -72,7 +99,7 @@ function MakeVacancy() {
             id="category"
             className="block p-2 my-4 text-sm focus:outline-none border-b-2 border-slate-300"
             onChange={handleOnChange}
-            value={'category'}
+            value={formData.category}
           >
             <option value={''} key={'default'}>
               Category
@@ -86,7 +113,7 @@ function MakeVacancy() {
           <select
             id="subCategory"
             className="block p-2 my-4 text-sm focus:outline-none border-b-2 border-slate-300"
-            key={'subCategory'}
+            value={formData.subCategory}
             onChange={handleOnChange}
           >
             <option value="" key={'subDefault'}>
@@ -103,23 +130,25 @@ function MakeVacancy() {
             id="jobType"
             className="block  p-2 my-4 text-sm focus:outline-none border-b-2 border-slate-300"
             key={'jobType'}
+            value={formData.jobType}
             onChange={handleOnChange}
           >
             <option selected>Job Type</option>
-            <option value="fullTime">Full Time</option>
-            <option value="PartTime">Part Time</option>
-            <option value="contract">Contract</option>
+            <option value="FULL_TIME">Full Time</option>
+            <option value="PART_TIME">Part Time</option>
+            <option value="CONTRACT">Contract</option>
           </select>
           <select
             id="modality"
-            className="block  p-2 my-4 text-sm focus:outline-none border-b-2 border-slate-300"
+            className="block p-2 my-4 text-sm focus:outline-none border-b-2 border-slate-300"
             key={'modality'}
             onChange={handleOnChange}
+            value={formData.modality}
           >
             <option selected>Modality</option>
-            <option value="inSite">In-Site</option>
-            <option value="remote">Remote</option>
-            <option value="hybrid">Hybrid</option>
+            <option value="IN_SITE">In-Site</option>
+            <option value="REMOTE">Remote</option>
+            <option value="HYBRID">Hybrid</option>
           </select>
         </div>
         <div className="flex flex-col gap-2">
@@ -132,6 +161,7 @@ function MakeVacancy() {
               'w-full outline-none border-2 border-slate-300 min-h-[40vh] p-4'
             }
             onChange={handleOnChange}
+            value={formData.description}
           />
         </div>
         <div className={'flex gap-2 md:gap-8 flex-col md:flex-row'}>
@@ -139,6 +169,7 @@ function MakeVacancy() {
             name={'salary'}
             label={'Salary'}
             type={'number'}
+            value={formData.salary?.toString()}
             optional={true}
             onChange={handleOnChange}
           />
@@ -148,6 +179,7 @@ function MakeVacancy() {
             type={'date'}
             placeholder={'Enter date'}
             onChange={handleOnChange}
+            value={formData.startingDate}
           />
           <Input
             name={'endingDate'}
@@ -155,10 +187,11 @@ function MakeVacancy() {
             type={'date'}
             placeholder={'Enter date'}
             onChange={handleOnChange}
+            value={formData.endingDate}
           />
         </div>
-        <button className={'bg-slate-400 px-6 py-3 my-4 text-white rounded-md'}>
-          Create Vacancy
+        <button className={'bg-slate-400 px-6 py-3 my-4 text-white rounded-md'} onClick={submitForm}>
+          {vacancy ? 'Update' : 'Create Vacancy'}
         </button>
       </div>
     </div>

@@ -25,6 +25,9 @@ const CompanyHeader = () => {
         <Link to=''>
           <div className='custom-nav-hover'>Job Seekers</div>
         </Link>
+        <Link to='vacancies'>
+          <div className='custom-nav-hover'>Vacancies</div>
+        </Link>
         <Link to='make-vacancy'>
           <div className='custom-nav-hover'>Make Vacancy</div>
         </Link>

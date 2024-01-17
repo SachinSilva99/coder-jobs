@@ -24,6 +24,8 @@ import CompanyHero from "./pages/company/CompanyHero.tsx";
 import Company from "./pages/company/Company.tsx";
 import ApplicationsReceived from "./pages/company/applications/ApplicationsReceived.tsx";
 import MakeVacancy from "./pages/company/make-vacancy/MakeVacancy.tsx";
+import VacanciesByCompany from "./pages/company/vacancies/VacanciesByCompany.tsx";
+import CompanyProfile from "./pages/company/profile/CompanyProfile.tsx";
 
 
 function App() {
@@ -42,10 +44,11 @@ function App() {
           {/*company logged in*/}
           <Route path="/company" element={<Company/>}>
             <Route path="" element={<CompanyHero/>}/>
+            <Route path="vacancies" element={<VacanciesByCompany/>}/>
             <Route path="make-vacancy" element={<MakeVacancy/>}/>
             <Route path="requests" element={<Requests/>}/>
             <Route path="applications" element={<ApplicationsReceived/>}/>
-            <Route path="profile" element={<JobSeekerProfile/>}/>
+            <Route path="profile" element={<CompanyProfile/>}/>
           </Route>
           {/*logins and register*/}
           <Route path="/login" element={<Login/>}/>

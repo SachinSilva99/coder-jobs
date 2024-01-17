@@ -13,7 +13,7 @@ export const createRequest = tryCatch(async (req: Request, res: Response) => {
   // @ts-ignore
   const companyUserId = res.tokenData.user._id;
   const jobSeekerId = req.body.jobSeeker;
-  const {user, company} = await validateUserAndCompany(companyUserId);
+  const {company} = await validateUserAndCompany(companyUserId);
   await validateJobSeeker(jobSeekerId);
   const requestModel = new RequestModel({
     company: company._id,
