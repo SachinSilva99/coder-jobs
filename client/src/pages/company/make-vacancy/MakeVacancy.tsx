@@ -5,9 +5,8 @@ import {Category} from '../../../types/Category.ts';
 import {getAllCategories} from '../../../service/API_Service.ts';
 import Cookies from "js-cookie";
 import {TOKEN} from "../../../util/TOKEN.ts";
-import {createVacancy, updateVacancy} from "../../../service/company/CompanyService.ts";
+import {createVacancy, updateVacancy} from "../../../service/company/VacancyService.ts";
 import {useLocation} from "react-router-dom";
-import {undefined} from "zod";
 
 export interface Vacancy {
   _id?: string,
@@ -66,7 +65,6 @@ function MakeVacancy() {
       );
       const subCategoryNames: string[] = selectedCategoryObject?.subCategories || [];
       setSubCategories(subCategoryNames);
-
     }
   };
 

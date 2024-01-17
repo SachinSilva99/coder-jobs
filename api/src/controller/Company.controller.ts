@@ -37,7 +37,7 @@ export const createCompany = tryCatch(async (req: Request, res: Response) => {
  */
 export const getCompany = tryCatch(async (req: Request, res: Response) => {
   const companyId = req.params.id;
-  const company = await CompanyModel.find({
+  const company = await CompanyModel.findOne({
     _id: companyId,
     deleteStatus: false,
   });

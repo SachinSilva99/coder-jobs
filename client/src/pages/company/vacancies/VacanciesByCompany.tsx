@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getAllVacancy} from "../../../service/company/VacancyService.ts";
+import {getAllVacancyOfLoggedInCompany} from "../../../service/company/VacancyService.ts";
 import Cookies from "js-cookie";
 import {TOKEN} from "../../../util/TOKEN.ts";
 import VacancyCard from "../../../components/cards/VacancyCard.tsx";
@@ -19,7 +19,7 @@ function VacanciesByCompany() {
   const [vacancies, setVacancies] = useState<VacancyCard[]>([]);
   useEffect(() => {
     const loadVacancies = async () => {
-      const loadedVacancies = await getAllVacancy(Cookies.get(TOKEN));
+      const loadedVacancies = await getAllVacancyOfLoggedInCompany(Cookies.get(TOKEN));
       setVacancies(loadedVacancies);
     }
     loadVacancies();

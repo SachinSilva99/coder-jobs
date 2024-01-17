@@ -1,7 +1,34 @@
 import {FaFilter, FaSearch} from "react-icons/fa";
 import JobCard from "../../components/cards/JobCard.tsx";
+import {useEffect, useState} from "react";
+import {getAllCategories} from "../../service/API_Service.ts";
+import {getAllVacancies} from "../../service/get/GetAllVacancies.ts";
+
+export interface Vacancy {
+  company: string,
+  jobTitle: string,
+  description: string,
+  category: string,
+  subCategory: string,
+  jobType: string,
+  modality: string,
+  salary?: number,
+  endingDate: string,
+  startingDate: string,
+  deleteStatus: boolean
+}
 
 const HomeHero = () => {
+  const [vacancies, setVacancies] = useState<Vacancy[]>([])
+  useEffect(() => {
+    const loadVacancies = async () => {
+      const vacancies: Vacancy[] = await getAllVacancies(1, 10);
+      console.log(vacancies)
+      setVacancies(vacancies);
+    }
+    loadVacancies();
+  }, []);
+
   return (
     <div className='px-4 md:px-8 lg:px-16'>
       <p className="text-lg mt-8 mb-4">
@@ -73,13 +100,23 @@ const HomeHero = () => {
         </div>
       </div>
       <div className='my-4 flex flex-col gap-8'>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
+        {vacancies.length !== 0 && (
+          vacancies.map(vacancy =>
+            <JobCard
+            jobTitle={vacancy.jobTitle}
+            company={vacancy.company}
+            description={vacancy.description}
+            category={vacancy.category}
+            subCategory={vacancy.subCategory}
+            jobType={vacancy.jobType}
+            modality={vacancy.modality}
+            endingDate={vacancy.endingDate}
+            salary={vacancy.salary}
+            startingDate={vacancy.startingDate}
+            createdAt={vacancy.createdAt}
+
+            />)
+        )}
       </div>
     </div>
   );
