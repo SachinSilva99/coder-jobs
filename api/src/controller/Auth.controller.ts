@@ -10,7 +10,8 @@ import {NotFoundError} from "../types/error/NotFoundError";
 import {UnAuthorizedError} from "../types/error/UnAuthorizedError";
 
 export const userSignUp = tryCatch(async (req: Request, res: Response) => {
-  const user: IUser = req.body;
+  const user: IUser = req.body.data;
+  console.log(user);
   user.password = await bcrypt.hash(user.password, 10);
   const saveUser = await new UserModel(user).save();
   const response: StandardResponse<string> = {statusCode: 201, msg: "sign up successful", data: saveUser._id}

@@ -8,6 +8,11 @@ import logo from "../../assets/logo.png";
 import {z} from 'zod';
 import {FormProvider, SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {signUp} from "../../service/company/AuthService.ts";
+
+type userType = {
+  userType: string
+}
 
 const schema = z.object({
   email: z.string().email(),
@@ -34,9 +39,17 @@ const RegisterUser = () => {
   const {errors, isLoading} = methods.formState;
   const location = useLocation();
   const isCompany = location.state.isCompany;
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
-    console.log(errors)
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    if (isCompany) {
+      // @ts-ignore
+      data.userType = "COMPANY";
+    } else {
+      // @ts-ignore
+      data.userType = "JOB_SEEKER";
+    }
+    console.log(data)
+    const res = await signUp(data);
+    console.log(res)
   }
   return (
     <div className="flex min-h-[100vh] px-2 pd:mx-8 lg:px-16">
@@ -83,19 +96,19 @@ const RegisterUser = () => {
               {errors.password && (<div className='text-red-500'>{errors.password.message}</div>)}
 
               <Input name={'confirmPassword'} label={'Confirm Password'}
-                     type={'confirmPassword'}
+                     type={'password'}
                      placeholder={'Confirm your password'} icon={<RiLockPasswordFill/>
               }/>
               {errors.confirmPassword && (<div className='text-red-500'>{errors.confirmPassword.message}</div>)}
-             <div className={'flex flex-col'}>
-               <Link className="self-end text-zinc-600 my-4" to="/#">
-                 Forgot password?
-               </Link>
-               <button type='submit' disabled={isLoading}
-                       className="bg-blue-900 mx-2 md:p-4 text-white rounded-full m-6">
-                 {isLoading ? "Registering..." : "Register"}
-               </button>
-             </div>
+              <div className={'flex flex-col'}>
+                <Link className="self-end text-zinc-600 my-4" to="/#">
+                  Forgot password?
+                </Link>
+                <button type='submit' disabled={isLoading}
+                        className="bg-blue-900 mx-2 md:p-4 text-white rounded-full m-6">
+                  {isLoading ? "Registering..." : "Register"}
+                </button>
+              </div>
               {errors.root && (<div className='text-red-500'>{errors.root.message}</div>)}
             </form>
           </FormProvider>
