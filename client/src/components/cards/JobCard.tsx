@@ -4,6 +4,11 @@ import {SiHashnode} from "react-icons/si";
 import {useEffect, useState} from "react";
 import {getCompany} from "../../service/company/CompanyService.ts";
 
+interface CompanyDetail {
+  companyLogo: string;
+  companyName: string
+}
+
 interface Props {
   _id?: string,
   jobTitle: string,
@@ -31,16 +36,15 @@ const JobCard = ({
                    category,
                    description,
                    createdAt,
-
                    _id
                  }: Props) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [companyDetail, setCompanyDetail] = useState(null);
+  const [companyDetail, setCompanyDetail] = useState<CompanyDetail | null>(null);
   useEffect(() => {
     const loadCompanyDetails = async () => {
       const companyFound = await getCompany(company);
       console.log(companyFound)
-      if(companyFound){
+      if (companyFound) {
         setCompanyDetail(companyFound);
       }
     }
@@ -101,24 +105,13 @@ const JobCard = ({
           </button>
         </div>
       </div>
-      <p className='p-4'>
-        <h2 className='font-semibold'>Description</h2>
-        {showFullDescription || !isLongDescription ? (
-          <>
-            {description}{' '}
-            {isLongDescription && (
-              <button className='text-emerald-600' onClick={toggleDescription}>
-                Read Less
-              </button>
-            )}
-          </>
-        ) : (
-          <>
-            {`${description.split(' ').slice(0, 10).join(' ')}... `}
-            <button className='text-emerald-600' onClick={toggleDescription}>
-              Read More
-            </button>
-          </>
+      <p className='p-4 no-more-tailwind'>
+        <h2 className='font-semibold text-xl'>Description</h2>
+        <div dangerouslySetInnerHTML={{__html: showFullDescription ? description : `${description.slice(0, 200)}...`}}/>
+        {isLongDescription && (
+          <button className='text-emerald-600' onClick={toggleDescription}>
+            {showFullDescription ? 'Read Less' : 'Read More'}
+          </button>
         )}
       </p>
       <p className='text-right text-sm md:text-md  pr-8 pb-2 text-slate-400'>{createdAt}</p>

@@ -26,7 +26,7 @@ import ApplicationsReceived from "./pages/company/applications/ApplicationsRecei
 import MakeVacancy from "./pages/company/make-vacancy/MakeVacancy.tsx";
 import VacanciesByCompany from "./pages/company/vacancies/VacanciesByCompany.tsx";
 import CompanyProfile from "./pages/company/profile/CompanyProfile.tsx";
-
+import 'react-quill/dist/quill.snow.css';
 
 function App() {
   return (

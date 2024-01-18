@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import {TOKEN} from "../../../util/TOKEN.ts";
 import {createVacancy, updateVacancy} from "../../../service/company/VacancyService.ts";
 import {useLocation} from "react-router-dom";
+import ReactQuill from 'react-quill';
 
 export interface Vacancy {
   _id?: string,
@@ -54,7 +55,7 @@ function MakeVacancy() {
       .then((r) => console.log(r))
       .catch((e) => console.error(e));
   }, [formData.category]);
-
+  console.log(formData)
   const handleOnChange = (e) => {
     const {id, value} = e.target;
     setFormData({...formData, [id]: value});
@@ -67,6 +68,9 @@ function MakeVacancy() {
       setSubCategories(subCategoryNames);
     }
   };
+  const handleReactQuil = (html: string) => {
+    setFormData({...formData, description: html})
+  }
 
   async function submitForm() {
     if (vacancy && vacancy._id) {
@@ -153,14 +157,22 @@ function MakeVacancy() {
           <label className="my-2" htmlFor="description">
             Description <span className={'text-red-600'}> *</span>
           </label>
-          <textarea
+          <div className='m-2'>
+            <ReactQuill
+              id={'description'}
+              theme="snow"
+              value={formData.description}
+              onChange={handleReactQuil}/>
+          </div>
+
+          {/*   <textarea
             id={'description'}
             className={
               'w-full outline-none border-2 border-slate-300 min-h-[40vh] p-4'
             }
             onChange={handleOnChange}
             value={formData.description}
-          />
+          />*/}
         </div>
         <div className={'flex gap-2 md:gap-8 flex-col md:flex-row'}>
           <Input

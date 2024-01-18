@@ -10,12 +10,12 @@ const GuestHeader = () => {
         <img className='h-20' src={logo} alt="logo"/>
       </div>
       <div className="right-nav  items-center justify-between  gap-8 hidden md:flex">
-        <Link className="mt-2 flex custom-nav-hover" to='#'>
+        <Link className="mt-2 flex custom-nav-hover" to='/register' state={{isCompany: true}}>
           <i className="fa-solid fa-upload"></i>
           Post a Job
         </Link>
         <Link className="mt-2 custom-nav-hover" to='/login'>Login</Link>
-        <Link to='/register'>
+        <Link to='/register' state={{isCompany: false}}>
           <button className="bg-btnBlue w-40 p-2 text-white mt-2">
             Register
           </button>

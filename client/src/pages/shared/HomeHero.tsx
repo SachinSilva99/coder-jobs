@@ -30,7 +30,7 @@ const HomeHero = () => {
   }, []);
 
   return (
-    <div className='px-4 md:px-8 lg:px-16'>
+    <div className='px-4 md:px-8 lg:px-16 min-h-[90vh]'>
       <p className="text-lg mt-8 mb-4">
         Find your job now!
       </p>
