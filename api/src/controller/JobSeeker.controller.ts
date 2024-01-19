@@ -7,6 +7,7 @@ import {CompanyModel} from "../model/Company.model";
 
 export const createJobSeeker = tryCatch(async (req: Request, res: Response) => {
   const jobSeeker: IJobSeeker = req.body;
+  console.log(req.body)
   const jobSeekerModel = new JobSeekerModel(jobSeeker);
   const savedJobSeeker = await jobSeekerModel.save();
   const response: StandardResponse<string> = {

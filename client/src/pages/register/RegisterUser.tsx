@@ -1,5 +1,4 @@
-import {Link, useLocation} from "react-router-dom";
-import Input from "../../components/input/Input.tsx";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {MdEmail} from "react-icons/md";
 import {FaUser} from "react-icons/fa";
 import {RiLockPasswordFill} from "react-icons/ri";
@@ -8,11 +7,10 @@ import logo from "../../assets/logo.png";
 import {z} from 'zod';
 import {FormProvider, SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {signUp} from "../../service/company/AuthService.ts";
+import {signUp} from "../../service/user/AuthService.ts";
+import InputControl from "../../components/input/InputControl.tsx";
 
-type userType = {
-  userType: string
-}
+
 
 const schema = z.object({
   email: z.string().email(),
@@ -35,6 +33,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 const RegisterUser = () => {
+  const navigate = useNavigate();
   const methods = useForm<FormFields>({resolver: zodResolver(schema)});
   const {errors, isLoading} = methods.formState;
   const location = useLocation();
@@ -43,13 +42,14 @@ const RegisterUser = () => {
     if (isCompany) {
       // @ts-ignore
       data.userType = "COMPANY";
+      const userId = await signUp(data);
+      navigate('company', {state: {id: userId}})
     } else {
       // @ts-ignore
       data.userType = "JOB_SEEKER";
+      const userId = await signUp(data);
+      navigate('job-seeker', {state: {id: userId}})
     }
-    console.log(data)
-    const res = await signUp(data);
-    console.log(res)
   }
   return (
     <div className="flex min-h-[100vh] px-2 pd:mx-8 lg:px-16">
@@ -68,36 +68,36 @@ const RegisterUser = () => {
           </p>
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <Input label={'Email'} type={'email'} placeholder={'Enter your email'}
-                     icon={<MdEmail/>} name={'email'}/>
+              <InputControl label={'Email'} type={'email'} placeholder={'Enter your email'}
+                            icon={<MdEmail/>} name={'email'}/>
               {errors.email && (<div className='text-red-500'>{errors.email.message}</div>)}
               <div className='flex  gap-4'>
                 <div className='w-full'>
-                  <Input name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'} icon={<FaUser/>}/>
+                  <InputControl name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'} icon={<FaUser/>}/>
                   {errors.fName && (<div className='text-red-500'>{errors.fName.message}</div>)}
                 </div>
                 <div className='w-full'>
-                  <Input label={'Last Name'} type={'text'}
-                         placeholder={'last name'} icon={<FaUser/>} name={'lName'}/>
+                  <InputControl label={'Last Name'} type={'text'}
+                                placeholder={'last name'} icon={<FaUser/>} name={'lName'}/>
                   {errors.lName && (<div className='text-red-500'>{errors.lName.message}</div>)}
                 </div>
 
 
               </div>
-              <Input name={'username'} label={'Username'} type={'username'}
-                     placeholder={'Enter your username'}
-                     icon={<FaUser/>}/>
+              <InputControl name={'username'} label={'Username'} type={'username'}
+                            placeholder={'Enter your username'}
+                            icon={<FaUser/>}/>
               {errors.username && (<div className='text-red-500'>{errors.username.message}</div>)}
 
-              <Input name={'password'} label={'Password'} type={'password'}
-                     placeholder={'Enter your password'}
-                     icon={<RiLockPasswordFill/>
+              <InputControl name={'password'} label={'Password'} type={'password'}
+                            placeholder={'Enter your password'}
+                            icon={<RiLockPasswordFill/>
                      }/>
               {errors.password && (<div className='text-red-500'>{errors.password.message}</div>)}
 
-              <Input name={'confirmPassword'} label={'Confirm Password'}
-                     type={'password'}
-                     placeholder={'Confirm your password'} icon={<RiLockPasswordFill/>
+              <InputControl name={'confirmPassword'} label={'Confirm Password'}
+                            type={'password'}
+                            placeholder={'Confirm your password'} icon={<RiLockPasswordFill/>
               }/>
               {errors.confirmPassword && (<div className='text-red-500'>{errors.confirmPassword.message}</div>)}
               <div className={'flex flex-col'}>
