@@ -101,7 +101,6 @@ const RegisterFormJobSeeker = () => {
         console.error(error);
       }
     };
-
     getCategories();
   }, [watch.category]);
 

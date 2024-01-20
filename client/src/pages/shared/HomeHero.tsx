@@ -1,7 +1,6 @@
 import {FaFilter, FaSearch} from "react-icons/fa";
 import JobCard from "../../components/cards/JobCard.tsx";
 import {useEffect, useState} from "react";
-import {getAllCategories} from "../../service/API_Service.ts";
 import {getAllVacancies} from "../../service/get/GetAllVacancies.ts";
 
 export interface Vacancy {

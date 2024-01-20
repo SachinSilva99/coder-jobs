@@ -9,7 +9,7 @@ import {FormProvider, SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signUp} from "../../service/user/AuthService.ts";
 import InputControl from "../../components/input/InputControl.tsx";
-
+import {useEffect} from "react";
 
 
 const schema = z.object({
@@ -37,14 +37,19 @@ const RegisterUser = () => {
   const methods = useForm<FormFields>({resolver: zodResolver(schema)});
   const {errors, isLoading} = methods.formState;
   const location = useLocation();
-  const isCompany = location.state.isCompany;
+  const type = location.state?.type;
+  useEffect(() => {
+    if(!type){
+      navigate('/');
+    }
+  }, []);
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    if (isCompany) {
+    if (type === 'COMPANY') {
       // @ts-ignore
       data.userType = "COMPANY";
       const userId = await signUp(data);
       navigate('company', {state: {id: userId}})
-    } else {
+    } else if (type === 'JOB_SEEKER') {
       // @ts-ignore
       data.userType = "JOB_SEEKER";
       const userId = await signUp(data);
@@ -73,7 +78,8 @@ const RegisterUser = () => {
               {errors.email && (<div className='text-red-500'>{errors.email.message}</div>)}
               <div className='flex  gap-4'>
                 <div className='w-full'>
-                  <InputControl name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'} icon={<FaUser/>}/>
+                  <InputControl name={'fName'} label={'First Name'} type={'text'} placeholder={'first name'}
+                                icon={<FaUser/>}/>
                   {errors.fName && (<div className='text-red-500'>{errors.fName.message}</div>)}
                 </div>
                 <div className='w-full'>
@@ -81,8 +87,6 @@ const RegisterUser = () => {
                                 placeholder={'last name'} icon={<FaUser/>} name={'lName'}/>
                   {errors.lName && (<div className='text-red-500'>{errors.lName.message}</div>)}
                 </div>
-
-
               </div>
               <InputControl name={'username'} label={'Username'} type={'username'}
                             placeholder={'Enter your username'}
@@ -92,7 +96,7 @@ const RegisterUser = () => {
               <InputControl name={'password'} label={'Password'} type={'password'}
                             placeholder={'Enter your password'}
                             icon={<RiLockPasswordFill/>
-                     }/>
+                            }/>
               {errors.password && (<div className='text-red-500'>{errors.password.message}</div>)}
 
               <InputControl name={'confirmPassword'} label={'Confirm Password'}

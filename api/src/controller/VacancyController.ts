@@ -5,6 +5,7 @@ import {IVacancy} from "../types/SchemaTypes";
 import VacancyModel from "../model/Vacancy.model";
 import {CompanyModel} from "../model/Company.model";
 import {NotFoundError} from "../types/error/NotFoundError";
+import UserModel from "../model/User.model";
 
 /**
  * Create a vacancy
@@ -128,7 +129,10 @@ export const getAllVacanciesOfLoggedInCompany = tryCatch(async (req: Request, re
 
   // @ts-ignore
   const userId = res.tokenData.user._id;
-  const company = await CompanyModel.findOne({user: userId});
+
+  const user = await UserModel.findOne({_id: userId, deleteStatus: false});
+  if (!user) throw new NotFoundError(userId + " User not found");
+  const company = await CompanyModel.findOne({user: userId, deleteStatus: false});
   if (!company) throw new NotFoundError("company not found");
   const vacancies = await VacancyModel.find({
     company: company._id,

@@ -11,6 +11,7 @@ import vacancyRoute from "./routes/Vacancy.route";
 import companyRoute from "./routes/Company.route";
 import requestRoute from "./routes/Request.route";
 import cors from 'cors';
+import applicationRoute from "./routes/Application.route";
 env.config();
 
 mongoose
@@ -31,6 +32,7 @@ app.use("/api/v1/company-package", companyPackageRoute);
 app.use("/api/v1/vacancy", vacancyRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/request", requestRoute);
+app.use("/api/v1/application", applicationRoute);
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${process.env.PORT}`);

@@ -1,42 +1,48 @@
 import Input from '../../../components/input/Input.tsx';
-import {FaSuitcase} from 'react-icons/fa';
-import {useEffect, useState} from 'react';
-import {Category} from '../../../types/Category.ts';
-import {getAllCategories} from '../../../service/API_Service.ts';
-import Cookies from "js-cookie";
-import {TOKEN} from "../../../util/TOKEN.ts";
-import {createVacancy, updateVacancy} from "../../../service/company/VacancyService.ts";
-import {useLocation} from "react-router-dom";
+import { FaSuitcase } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { Category } from '../../../types/Category.ts';
+import { getAllCategories } from '../../../service/API_Service.ts';
+import Cookies from 'js-cookie';
+import { TOKEN } from '../../../util/TOKEN.ts';
+import {
+  createVacancy,
+  updateVacancy,
+} from '../../../service/vacancy/VacancyService.ts';
+import { useLocation } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 
 export interface Vacancy {
-  _id?: string,
-  jobTitle: string,
-  description: string,
-  category: string,
-  subCategory: string,
-  jobType: string,
-  modality: string,
-  salary?: number,
-  endingDate: string,
-  startingDate: string,
+  _id?: string;
+  jobTitle: string;
+  description: string;
+  category: string;
+  subCategory: string;
+  jobType: string;
+  modality: string;
+  salary?: number;
+  endingDate: string;
+  startingDate: string;
 }
 
 function MakeVacancy() {
   const location = useLocation();
   const vacancy: Vacancy = location?.state?.vacancy;
   const [formData, setFormData] = useState<Vacancy>(
-    vacancy ? vacancy : {
-      category: "",
-      description: "",
-      endingDate: '',
-      jobTitle: "",
-      jobType: "",
-      modality: "",
-      salary: 0,
-      startingDate: '',
-      subCategory: "",
-    });
+    vacancy
+      ? vacancy
+      : {
+          category: '',
+          description: '',
+          endingDate: '',
+          jobTitle: '',
+          jobType: '',
+          modality: '',
+          salary: 0,
+          startingDate: '',
+          subCategory: '',
+        }
+  );
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [subCategories, setSubCategories] = useState<string[]>([]);
@@ -47,7 +53,8 @@ function MakeVacancy() {
       const selectedCategoryObject = categories.find(
         (category) => category.name === formData.category
       );
-      const subCategoryNames: string[] = selectedCategoryObject?.subCategories || [];
+      const subCategoryNames: string[] =
+        selectedCategoryObject?.subCategories || [];
       setSubCategories(subCategoryNames);
     };
 
@@ -55,30 +62,35 @@ function MakeVacancy() {
       .then((r) => console.log(r))
       .catch((e) => console.error(e));
   }, [formData.category]);
-  console.log(formData)
+  console.log(formData);
   const handleOnChange = (e) => {
-    const {id, value} = e.target;
-    setFormData({...formData, [id]: value});
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
     const selectedValue = e.target.value as string;
     if (e.target.id === 'category') {
       const selectedCategoryObject = categories.find(
         (category) => category.name === selectedValue
       );
-      const subCategoryNames: string[] = selectedCategoryObject?.subCategories || [];
+      const subCategoryNames: string[] =
+        selectedCategoryObject?.subCategories || [];
       setSubCategories(subCategoryNames);
     }
   };
   const handleReactQuil = (html: string) => {
-    setFormData({...formData, description: html})
-  }
+    setFormData({ ...formData, description: html });
+  };
 
   async function submitForm() {
     if (vacancy && vacancy._id) {
-      const response = await updateVacancy(formData, Cookies.get(TOKEN), vacancy._id);
+      const response = await updateVacancy(
+        formData,
+        Cookies.get(TOKEN),
+        vacancy._id
+      );
       console.log(response);
     } else {
       const response = await createVacancy(formData, Cookies.get(TOKEN));
-      console.log(response)
+      console.log(response);
     }
   }
 
@@ -92,7 +104,7 @@ function MakeVacancy() {
           type={'text'}
           value={formData.jobTitle}
           placeholder={'Enter job title'}
-          icon={<FaSuitcase/>}
+          icon={<FaSuitcase />}
           onChange={handleOnChange}
         />
         <div className="flex gap-1 flex-col md:flex-row md:gap-6">
@@ -157,12 +169,13 @@ function MakeVacancy() {
           <label className="my-2" htmlFor="description">
             Description <span className={'text-red-600'}> *</span>
           </label>
-          <div className='m-2'>
+          <div className="m-2">
             <ReactQuill
               id={'description'}
               theme="snow"
               value={formData.description}
-              onChange={handleReactQuil}/>
+              onChange={handleReactQuil}
+            />
           </div>
 
           {/*   <textarea
@@ -200,7 +213,10 @@ function MakeVacancy() {
             value={formData.endingDate}
           />
         </div>
-        <button className={'bg-slate-400 px-6 py-3 my-4 text-white rounded-md'} onClick={submitForm}>
+        <button
+          className={'bg-slate-400 px-6 py-3 my-4 text-white rounded-md'}
+          onClick={submitForm}
+        >
           {vacancy ? 'Update' : 'Create Vacancy'}
         </button>
       </div>
