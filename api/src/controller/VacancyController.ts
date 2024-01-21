@@ -30,7 +30,8 @@ export const createVacancy = tryCatch(async (req: Request, res: Response) => {
  */
 export const getAllVacancies = tryCatch(async (req: Request, res: Response) => {
   const query: any = req.query;
-  const {page, size} = query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
   const vacancies = await VacancyModel.find().limit(size).skip(size * (page - 1));
   const response: StandardResponse<any> = {statusCode: 200, msg: "OK", data: vacancies}
   res.status(200).send(response);

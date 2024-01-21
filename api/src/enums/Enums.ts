@@ -20,3 +20,7 @@ export enum UserType {
   "JOB_SEEKER" = "JOB_SEEKER",
   "COMPANY" = "COMPANY",
 }
+
+export enum Status {
+  'PENDING' = 'PENDING', 'ACCEPTED' = 'ACCEPTED', 'REJECTED' = 'REJECTED'
+}

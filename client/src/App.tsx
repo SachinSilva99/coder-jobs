@@ -27,6 +27,7 @@ import MakeVacancy from "./pages/company/make-vacancy/MakeVacancy.tsx";
 import VacanciesByCompany from "./pages/company/vacancies/VacanciesByCompany.tsx";
 import CompanyProfile from "./pages/company/profile/CompanyProfile.tsx";
 import 'react-quill/dist/quill.snow.css';
+import ApplicationDetails from "./pages/company/applications/ApplicationDetails.tsx";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="requests" element={<Requests/>}/>
             <Route path="applications" element={<ApplicationsReceived/>}/>
             <Route path="profile" element={<CompanyProfile/>}/>
+            <Route path="application" element={<ApplicationDetails/>}/>
           </Route>
           {/*logins and register*/}
           <Route path="/login" element={<Login/>}/>

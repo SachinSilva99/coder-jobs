@@ -8,13 +8,16 @@ import {
 } from "../../../service/vacancy/VacancyService.ts";
 import Cookies from "js-cookie";
 import {TOKEN} from "../../../util/TOKEN.ts";
+import {useNavigate} from "react-router-dom";
 
-interface JobApplication {
+export interface JobApplication {
   _id: string;
+  coverLetter: string
   jobSeeker: {
     _id: string;
     resume: string;
     avatar: string;
+    jobSeekerContact: string
     user: {
       _id: string;
       fName: string;
@@ -40,9 +43,9 @@ interface JobApplication {
 }
 
 
-
 const ApplicationsReceived = () => {
-  const [vacancies, setVacancies] = useState<JobApplication[]>([])
+  const [vacancies, setVacancies] = useState<JobApplication[]>([]);
+  const navigate = useNavigate();
   useEffect(() => {
     getAllApplicationsOfLoggedInCompany(Cookies.get(TOKEN))
       .then(allVacancies => setVacancies(allVacancies))
@@ -51,9 +54,12 @@ const ApplicationsReceived = () => {
   return (
     <div className='px-4 md:px-8 lg:px-16 min-h-[90vh]'>
       <div className='flex flex-col flex-wrap gap-4  my-4 2xl:justify-between'>
-        {vacancies.map(value => (
-          <ApplicationReceivedCard userPic={value.jobSeeker.avatar} _id={value._id} category={value.vacancy.category} subCategory={value.vacancy.subCategory}
-                                   jobTitle={value.vacancy.jobTitle}/>
+        {vacancies.map(application => (
+          <ApplicationReceivedCard onClick={() => {
+            navigate('/company/application', {state: {application: application}})
+          }} userPic={application.jobSeeker.avatar} _id={application._id} category={application.vacancy.category}
+                                   subCategory={application.vacancy.subCategory}
+                                   jobTitle={application.vacancy.jobTitle}/>
         ))}
       </div>
     </div>

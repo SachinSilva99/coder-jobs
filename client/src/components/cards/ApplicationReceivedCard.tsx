@@ -6,6 +6,7 @@ interface Props {
   category: string,
   subCategory: string,
   userPic: string
+  onClick: () => void,
 }
 
 const ApplicationReceivedCard = ({
@@ -13,10 +14,12 @@ const ApplicationReceivedCard = ({
                                    category,
                                    subCategory,
                                    jobTitle,
-                                   userPic
+                                   userPic,
+                                   onClick
                                  }: Props) => {
   return (
-    <div className='border border-slate-300 rounded-lg hover:bg-blue-100 hover:duration-500 cursor-pointer'>
+    <div onClick={(e) => onClick()}
+         className='border border-slate-300 rounded-lg hover:bg-blue-100 hover:duration-500 cursor-pointer'>
       <div className='flex flex-row items-center  p-4 gap-4'>
         {/*img */}
         <div className='m-4 w-20'>

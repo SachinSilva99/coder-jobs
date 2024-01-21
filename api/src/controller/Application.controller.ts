@@ -7,11 +7,9 @@ import {StandardResponse} from "../dto/StandardResponse";
 import {NotFoundError} from "../types/error/NotFoundError";
 import JobSeekerModel from "../model/JobSeeker.model";
 import ApplicationModel from "../model/Application.model";
-import VacancyModel from "../model/Vacancy.model";
 import {CompanyModel} from "../model/Company.model";
 
 export const createApplication = tryCatch(async (req: Request, res: Response) => {
-  console.log('here')
   const application: IApplication = req.body;
   // @ts-ignore
   const userId = res.tokenData.user._id;
@@ -44,19 +42,91 @@ export const getApplicationsOfLoggedCompany = tryCatch(async (req: Request, res:
     userType: UserType.COMPANY
   });
   if (!user) throw new NotFoundError("Invalid company user ID");
+  const query: any = req.query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
   const company = await CompanyModel.findOne({user: userId});
-  const applications = await ApplicationModel.find({deleteStatus:false}).populate({
+  if (!company) throw new NotFoundError("Invalid company");
+  const applications = await ApplicationModel.find({deleteStatus: false}).limit(size).skip(size * (page - 1)).populate({
     path: 'vacancy',
-    match: { company: company },
+    match: {company: company},
   }).populate({
     path: 'jobSeeker',
-    select: 'avatar resume',
-    populate:{
+    select: 'avatar resume jobSeekerContact',
+    populate: {
       path: 'user',
       select: 'fName lName email'
     }
   });
 
+  const response: StandardResponse<any> = {
+    statusCode: 201,
+    msg: "ok",
+    data: applications
+  }
+  res.status(201).send(response);
+});
+
+
+export const getApplicationsOfCompany = tryCatch(async (req: Request, res: Response) => {
+  const companyId = req.params.id;
+
+  const query: any = req.query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
+  const company = await CompanyModel.findOne({_id: companyId});
+  if (!company) throw new NotFoundError("Invalid company");
+  const applications = await ApplicationModel.find({deleteStatus: false}).limit(size).skip(size * (page - 1)).populate({
+    path: 'vacancy',
+    match: {company: company},
+  }).populate({
+    path: 'jobSeeker',
+    select: 'avatar resume jobSeekerContact',
+    populate: {
+      path: 'user',
+      select: 'fName lName email'
+    }
+  });
+  const response: StandardResponse<any> = {
+    statusCode: 201,
+    msg: "ok",
+    data: applications
+  }
+  res.status(201).send(response);
+});
+
+export const getAllApplications = tryCatch(async (req: Request, res: Response) => {
+  const query: any = req.query;
+  const page: number = query.page || 1;
+  const size: number = query.size || 10;
+  const applications = await ApplicationModel.find({deleteStatus: false}).limit(size).skip(size * (page - 1)).populate({
+    path: 'vacancy',
+  }).populate({
+    path: 'jobSeeker',
+    select: 'avatar resume jobSeekerContact',
+    populate: {
+      path: 'user',
+      select: 'fName lName email'
+    }
+  });
+  const response: StandardResponse<any> = {
+    statusCode: 201,
+    msg: "ok",
+    data: applications
+  }
+  res.status(201).send(response);
+});
+export const getApplication = tryCatch(async (req: Request, res: Response) => {
+  const applications = await ApplicationModel.findOne({_id: req.params.id, deleteStatus: false}).populate({
+    path: 'vacancy',
+  }).populate({
+    path: 'jobSeeker',
+    select: 'avatar resume jobSeekerContact',
+    populate: {
+      path: 'user',
+      select: 'fName lName email'
+    }
+  });
   const response: StandardResponse<any> = {
     statusCode: 201,
     msg: "ok",
