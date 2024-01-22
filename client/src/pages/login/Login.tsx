@@ -69,7 +69,7 @@ const Login = () => {
       }
 
     } catch (error) {
-      console.log(error);
+      // setErrors(error);
       dispatch(signInFailure(error));
     }
   }
@@ -110,6 +110,7 @@ const Login = () => {
               </a>
               {errors.email && <p className="text-red-500 my-1 text-sm">{errors.email}</p>}
               {errors.password && <p className="text-red-500 my-1 text-sm">{errors.password}</p>}
+              {error && <p className="text-red-500 my-1 text-sm">{error}</p>}
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>

@@ -95,7 +95,7 @@ export const getAllRequestByLoggedInCompany = tryCatch(async (req: Request, res:
   const requestsByCompany = await RequestModel.find({
     company: company._id,
     deleteStatus: false
-  }).limit(size).skip(size * (page - 1));
+  }).populate({path: 'jobSeeker',}).limit(size).skip(size * (page - 1));
 
   const response: StandardResponse<any> = {
     statusCode: 200,

@@ -1,13 +1,13 @@
 import axios from "axios";
-import {BASE_URL} from "../../util/BASE_URL.ts";
+import apiClient from "../ApiClient.ts";
 
 export const getCompany = async (companyId:string) => {
   const headers = {
     "Content-Type": "application/json",
   };
   try {
-    const response = await axios.get(
-      `${BASE_URL}/company/${companyId}`,
+    const response = await apiClient.get(
+      `/company/${companyId}`,
       {headers}
     );
     return response.data.data;
@@ -20,8 +20,8 @@ export const getAllCompanyPackages = async () => {
     "Content-Type": "application/json",
   };
   try {
-    const response = await axios.get(
-      `${BASE_URL}/company-package`,
+    const response = await apiClient.get(
+      `/company-package`,
       {headers}
     );
     return response.data.data;
@@ -35,7 +35,7 @@ export const createCompany = async (formData: any) => {
   };
   try {
     const response = await axios.post(
-      `${BASE_URL}/company`,
+      `/company`,
       formData,
       {headers}
     );

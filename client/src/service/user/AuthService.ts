@@ -1,13 +1,10 @@
-import axios from "axios";
-import {BASE_URL} from "../../util/BASE_URL.ts";
+import apiClient from "../ApiClient.ts";
 
-export const signUp = async ( data: any) => {
-  /*  const headers = {
-      "Content-Type": "application/json",
-    };*/
+export const signUp = async (data: any) => {
+
   try {
-    const response = await axios.post(
-      `${BASE_URL}/auth`,
+    const response = await apiClient.post(
+      `/auth`,
       {data}
     );
     return response.data.data;

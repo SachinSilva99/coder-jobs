@@ -1,29 +1,20 @@
 import axios from "axios";
-import {BASE_URL} from "../../util/BASE_URL.ts";
+import apiClient from "../ApiClient.ts";
 
-export const getAllVacancyOfLoggedInCompany = async (token: any) => {
-  const headers = {
-    "Content-Type": "application/json",
-    "authorization": token
-  };
+export const getAllVacancyOfLoggedInCompany = async () => {
   try {
-    const response = await axios.get(
-      `${BASE_URL}/vacancy?page=1&szie=10`,
-      {headers}
+    const response = await apiClient.get(
+      `/vacancy?page=1&szie=10`,
     );
     return response.data.data;
   } catch (error) {
     throw error.response.data.msg;
   }
-};export const getAllApplicationsOfLoggedInCompany = async (token: any) => {
-  const headers = {
-    "Content-Type": "application/json",
-    "authorization": token
-  };
+};export const getAllApplicationsOfLoggedInCompany = async () => {
+
   try {
-    const response = await axios.get(
-      `${BASE_URL}/application/logged-by-company`,
-      {headers}
+    const response = await apiClient.get(
+      `/application/logged-by-company`,
     );
     return response.data.data;
   } catch (error) {
@@ -32,14 +23,13 @@ export const getAllVacancyOfLoggedInCompany = async (token: any) => {
 };
 
 
-export const createVacancy = async (formData: any, token: any) => {
+export const createVacancy = async (formData: any) => {
   const headers = {
     "Content-Type": "application/json",
-    "authorization": token
   };
   try {
-    const response = await axios.post(
-      `${BASE_URL}/vacancy`,
+    const response = await apiClient.post(
+      `/vacancy`,
       formData,
       {headers}
     );
@@ -48,14 +38,13 @@ export const createVacancy = async (formData: any, token: any) => {
     throw error.response.data.msg;
   }
 };
-export const getVacanciesOfLoggedInCompany = async (token: any) => {
+export const getVacanciesOfLoggedInCompany = async () => {
   const headers = {
     "Content-Type": "application/json",
-    "authorization": token
   };
   try {
-    const response = await axios.get(
-      `${BASE_URL}/vacancy/logged-in/company?page=1&size=10`,
+    const response = await apiClient.get(
+      `/vacancy/logged-in/company?page=1&size=10`,
       {headers}
     );
     return response.data.data;
@@ -63,14 +52,13 @@ export const getVacanciesOfLoggedInCompany = async (token: any) => {
     throw error.response.data.msg;
   }
 };
-export const updateVacancy = async (formData: any, token: any, id: string) => {
+export const updateVacancy = async (formData: any, id: string) => {
   const headers = {
     "Content-Type": "application/json",
-    "authorization": token
   };
   try {
-    const response = await axios.put(
-      `${BASE_URL}/vacancy/${id}`,
+    const response = await apiClient.put(
+      `/vacancy/${id}`,
       formData,
       {headers}
     );

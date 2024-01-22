@@ -47,7 +47,7 @@ const ApplicationsReceived = () => {
   const [vacancies, setVacancies] = useState<JobApplication[]>([]);
   const navigate = useNavigate();
   useEffect(() => {
-    getAllApplicationsOfLoggedInCompany(Cookies.get(TOKEN))
+    getAllApplicationsOfLoggedInCompany()
       .then(allVacancies => setVacancies(allVacancies))
       .catch(err => console.log(err));
   }, []);

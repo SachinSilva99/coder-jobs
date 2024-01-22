@@ -1,11 +1,9 @@
-import axios from "axios";
-import {BASE_URL} from "../../util/BASE_URL.ts";
+import apiClient from "../ApiClient.ts";
 
-export const createJobSeeker = async ( formData: any) => {
+export const createJobSeeker = async (formData: any) => {
   try {
-    // @ts-ignore
-    const response = await axios.post(
-      `${BASE_URL}/job-seeker`,
+    const response = await apiClient.post(
+      `/job-seeker`,
       formData
     );
     return response.data.data;

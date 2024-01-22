@@ -22,12 +22,11 @@ const HomeHero = () => {
   useEffect(() => {
     const loadVacancies = async () => {
       const vacancies: Vacancy[] = await getAllVacancies(1, 10);
-      console.log(vacancies)
       setVacancies(vacancies);
     }
     loadVacancies();
   }, []);
-
+  console.log(vacancies)
   return (
     <div className='px-4 md:px-8 lg:px-16 min-h-[90vh]'>
       <p className="text-lg mt-8 mb-4">

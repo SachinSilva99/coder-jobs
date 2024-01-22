@@ -1,5 +1,5 @@
-import axios from "axios";
-import {BASE_URL} from "../util/BASE_URL.ts";
+
+import apiClient from "./ApiClient.ts";
 
 export const loginUser = async (formData: any) => {
   const headers = {
@@ -7,8 +7,8 @@ export const loginUser = async (formData: any) => {
   };
 
   try {
-    const response = await axios.post(
-      `${BASE_URL}/auth/login`,
+    const response = await apiClient.post(
+      `/auth/login`,
       formData,
       {headers}
     );
@@ -25,8 +25,8 @@ export const getAllCategories = async () => {
   };
 
   try {
-    const response = await axios.get(
-      `${BASE_URL}/category`,
+    const response = await apiClient.get(
+      `/category`,
       {headers}
     );
 
