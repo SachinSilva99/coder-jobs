@@ -24,7 +24,7 @@ export interface IRequest extends Document {
   description: string,
   salary?:number
   jobSeeker: Types.ObjectId,
-  status: string,
+  status: Status,
   view: boolean,
   deleteStatus: boolean,
 }

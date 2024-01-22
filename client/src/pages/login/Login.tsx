@@ -80,7 +80,7 @@ const Login = () => {
         <h1 className="text-2xl my-8">Job Seeker</h1>
         <div className='flex md:items-center md:justify-center h-full'>
           <div className='flex md:items-center md:justify-center w-full md:w-2/3 '>
-            <div className="flex flex-col w-full h-full">
+            <form className="flex flex-col w-full h-full">
               <h1 className="font-bold mb-5 text-lg">Sign in</h1>
               <p>If you don't have an account register</p>
               <p>
@@ -96,6 +96,8 @@ const Login = () => {
                 placeholder={'Enter your email'}
                 icon={<MdEmail/>}
                 onChange={handleOnChange}
+                optional={true}
+
               />
               <Input
                 name={'password'}
@@ -104,6 +106,7 @@ const Login = () => {
                 placeholder={'Enter your password'}
                 icon={<RiLockPasswordFill/>}
                 onChange={handleOnChange}
+                optional={true}
               />
               <a className="self-end text-zinc-600 my-4" href="#">
                 Forgot password?
@@ -114,7 +117,7 @@ const Login = () => {
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

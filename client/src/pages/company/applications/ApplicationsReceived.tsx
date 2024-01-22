@@ -6,8 +6,6 @@ import {
   getAllApplicationsOfLoggedInCompany,
   getAllVacancyOfLoggedInCompany
 } from "../../../service/vacancy/VacancyService.ts";
-import Cookies from "js-cookie";
-import {TOKEN} from "../../../util/TOKEN.ts";
 import {useNavigate} from "react-router-dom";
 
 export interface JobApplication {
@@ -37,7 +35,6 @@ export interface JobApplication {
     salary: number;
     endingDate: string;
     startingDate: string;
-
   };
   status: string;
 }
@@ -55,7 +52,7 @@ const ApplicationsReceived = () => {
     <div className='px-4 md:px-8 lg:px-16 min-h-[90vh]'>
       <div className='flex flex-col flex-wrap gap-4  my-4 2xl:justify-between'>
         {vacancies.map(application => (
-          <ApplicationReceivedCard onClick={() => {
+          <ApplicationReceivedCard  onClick={() => {
             navigate('/company/application', {state: {application: application}})
           }} userPic={application.jobSeeker.avatar} _id={application._id} category={application.vacancy.category}
                                    subCategory={application.vacancy.subCategory}
