@@ -32,7 +32,11 @@ export const updateJobSeeker = tryCatch(async (req: Request, res: Response) => {
 });
 
 export const getJobSeeker = tryCatch(async (req: Request, res: Response) => {
-  const jobSeeker = await JobSeekerModel.findOne({_id: req.params.id, deleteStatus: false});
+  const jobSeeker = await JobSeekerModel.findOne({_id: req.params.id, deleteStatus: false})
+    .populate({
+      path: 'user',
+      select: 'fName lName email'
+    });
   if (!jobSeeker) {
     res.status(404).send({
       statusCode: 404,
@@ -65,7 +69,14 @@ export const getAllJobSeekers = tryCatch(async (req: Request, res: Response) => 
   const query: any = req.query;
   const page: number = query.page || 1;
   const size: number = query.size || 10;
-  const jobSeekers = await JobSeekerModel.find({deleteStatus: false}).limit(size).skip(size * (page - 1));
+  const jobSeekers = await JobSeekerModel
+    .find({deleteStatus: false})
+    .limit(size)
+    .skip(size * (page - 1))
+    .populate({
+      path: 'user',
+      select: 'fName lName email'
+    });
   const countDocuments = await JobSeekerModel.countDocuments({deleteStatus: false});
   const pageCount = Math.ceil(countDocuments / size);
   const response: StandardResponse<any> = {

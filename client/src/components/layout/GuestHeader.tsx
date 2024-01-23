@@ -5,7 +5,7 @@ import logo from '../../assets/logo.png';
 
 const GuestHeader = () => {
   return (
-    <header className='flex h-28 justify-between px-4 pd:px-8 lg:px-16 '>
+    <header className='flex h-28 justify-between px-4 pd:px-8 lg:px-16 border-b border-slate-400'>
       <div className="left-nav flex items-center justify-start ">
         <img className='h-20' src={logo} alt="logo"/>
       </div>

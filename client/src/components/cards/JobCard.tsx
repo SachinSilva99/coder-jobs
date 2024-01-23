@@ -60,7 +60,7 @@ const JobCard = ({
       className='border border-slate-300 rounded-lg hover:bg-blue-100 hover:duration-500 cursor-pointer'>
       <div className='p-4 flex lg:flex-row gap-2 flex-col  rounded-md'>
         <div>
-          <div className='flex justify-between  items-center'>
+          <div className='flex justify-between  items-center gap-2'>
             <h1 className='xl font-semibold'>
               {jobTitle}
             </h1>

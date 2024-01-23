@@ -40,7 +40,7 @@ type FormFields = z.infer<typeof schema>;
 const RegisterFormCompany = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const methods = useForm<FormFields>({ mode:"onChange",
+  const methods = useForm<FormFields>({
     resolver: zodResolver(schema), defaultValues: {companySize: 0},
   });
   const {errors, isLoading} = methods.formState;
@@ -137,7 +137,6 @@ const RegisterFormCompany = () => {
                   }}
                          icon={<FaPeopleGroup/>}
                   />
-
                 </div>
                 {errors.companySize && (<div className='text-red-500'>{errors.companySize.message}</div>)}
               </div>

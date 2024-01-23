@@ -32,7 +32,7 @@ export async function validateUserAndCompany(companyUserId: string): Promise<{ u
 export async function validateJobSeeker(jobSeekerId: string) {
   const foundJobSeeker = await JobSeekerModel.findOne({ _id: jobSeekerId, deleteStatus: false });
   if (!foundJobSeeker) {
-    throw new NotFoundError(jobSeekerId + "Job Seeker not found");
+    throw new NotFoundError("Job Seeker not found");
   }
   return foundJobSeeker;
 }

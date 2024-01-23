@@ -177,15 +177,6 @@ function MakeVacancy() {
               onChange={handleReactQuil}
             />
           </div>
-
-          {/*   <textarea
-            id={'description'}
-            className={
-              'w-full outline-none border-2 border-slate-300 min-h-[40vh] p-4'
-            }
-            onChange={handleOnChange}
-            value={formData.description}
-          />*/}
         </div>
         <div className={'flex gap-2 md:gap-8 flex-col md:flex-row'}>
           <Input

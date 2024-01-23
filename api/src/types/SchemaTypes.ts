@@ -22,7 +22,7 @@ export interface IRequest extends Document {
   company: Types.ObjectId,
   jobTitle: string,
   description: string,
-  salary?:number
+  salary?: number
   jobSeeker: Types.ObjectId,
   status: Status,
   view: boolean,
@@ -37,7 +37,9 @@ export interface IJobSeeker extends Document {
   jobSeekerContact: string,
   gender: string,
   user: Types.ObjectId,
-  deleteStatus: boolean
+  deleteStatus: boolean,
+  about: string,
+  currentPosition: string
 }
 
 export interface ICompanyPackage extends Document {
@@ -94,9 +96,9 @@ export interface ISubmission extends Document {
 export interface IApplication extends Document {
   jobSeeker: Types.ObjectId,
   vacancy: Types.ObjectId,
-  coverLetter:string,
-  status:Status,
-  view:boolean,
+  coverLetter: string,
+  status: Status,
+  view: boolean,
   deleteStatus: boolean
 }
 

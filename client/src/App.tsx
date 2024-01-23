@@ -30,6 +30,7 @@ import 'react-quill/dist/quill.snow.css';
 import ApplicationDetails from "./pages/company/applications/ApplicationDetails.tsx";
 import RequestsByCompany from "./pages/company/request/RequestsByCompany.tsx";
 import RequestDetail from "./pages/company/request-detail/RequestDetail.tsx";
+import MakeRequest from "./pages/company/make-request/MakeRequest.tsx";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="profile" element={<CompanyProfile/>}/>
             <Route path="application" element={<ApplicationDetails/>}/>
             <Route path="request-detail" element={<RequestDetail/>}/>
+            <Route path="make-request" element={<MakeRequest/>}/>
           </Route>
           {/*logins and register*/}
           <Route path="/login" element={<Login/>}/>

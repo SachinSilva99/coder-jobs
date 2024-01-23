@@ -27,7 +27,7 @@ export const createRequest = tryCatch(async (req: Request, res: Response) => {
     msg: "Request Created successful",
     data: savedRequest._id
   }
-  res.status(200).send(response);
+  res.status(201).send(response);
 });
 /**
  * update  Request

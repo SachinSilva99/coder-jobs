@@ -24,13 +24,11 @@ const JobRequestDetail = () => {
           <p className='text-gray-600'>Email: {jobSeeker.user.email}</p>
           <p className='text-gray-600'>Contact: {jobSeeker.jobSeekerContact}</p>
         </div>
-
         <div className='mb-8'>
           <h2 className='text-xl font-semibold mb-3'>Application Status</h2>
           <p className={`text-${status === 'Approved' ? 'green' : 'red'}-500`}>Status: {status}</p>
           <p className='text-gray-600'>Viewed: {view ? 'Yes' : 'No'}</p>
         </div>
-
         <div className='mb-8'>
           <h2 className='text-xl font-semibold mb-3'>Timeline</h2>
           <p className='text-gray-600'>Created at: {createdAt}</p>
