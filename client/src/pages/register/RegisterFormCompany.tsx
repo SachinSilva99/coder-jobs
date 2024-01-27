@@ -152,7 +152,18 @@ const RegisterFormCompany = () => {
                                       }}
                                       _id={p._id} name={p.name} description={p.description} price={p.price}
                                       paymentMethod={p.paymentMethod}/>))}
+
               </div>
+              {/*payment section*/}
+
+            </div>
+            <div className='self-start'>
+              <p>Pay by card</p>
+              <div>
+
+              </div>
+              <p>Or</p>
+              <p>Upload Bank payment slip</p>
             </div>
             <button disabled={isLoading} type={'submit'}
                     className='bg-slate-400 px-8 py-4 text-white my-4 rounded-md hover:opacity-80 active:opacity-50 mt-8 mb-2'>

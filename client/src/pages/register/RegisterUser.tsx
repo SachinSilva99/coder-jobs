@@ -13,9 +13,8 @@ import {useEffect} from "react";
 import {FcGoogle} from "react-icons/fc";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {app} from "../../firebase/Firebase.ts";
-import {loginWithGoogle, signWithGoogle} from "../../service/API_Service.ts";
-import Cookies from "js-cookie";
-import {TOKEN} from "../../util/TOKEN.ts";
+import { signWithGoogle} from "../../service/API_Service.ts";
+
 
 
 const schema = z.object({
@@ -35,35 +34,43 @@ const schema = z.object({
     .regex(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/, {
       message: "Password must contain at least one uppercase letter and one symbol",
     }),
+  userType: z.string()
 })
 type FormFields = z.infer<typeof schema>;
 
 const RegisterUser = () => {
   const navigate = useNavigate();
-  const methods = useForm<FormFields>({resolver: zodResolver(schema)});
+  const methods = useForm<FormFields>({resolver: zodResolver(schema), defaultValues: {userType: 'JOB_SEEKER'}});
   const {errors, isLoading} = methods.formState;
   const location = useLocation();
   const type = location.state?.type;
+  /**
+   * if no user type then return to home page
+   */
   useEffect(() => {
     if (!type) {
       navigate('/');
     }
   }, []);
+
+  /**
+   * Submit User
+   */
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     if (type === 'COMPANY') {
-      // @ts-ignore
-      data.userType = "COMPANY";
+      data.userType = type;
       const userId = await signUp(data);
-      navigate('company', {state: {id: userId}})
+      navigate('company', {state: {id: userId}});
     } else if (type === 'JOB_SEEKER') {
-      // @ts-ignore
-      data.userType = "JOB_SEEKER";
+      data.userType = type;
       const userId = await signUp(data);
-      navigate('job-seeker', {state: {id: userId}})
+      navigate('job-seeker', {state: {id: userId}});
     }
   }
   const googleBtnOnClick = async () => {
-    console.log(type)
+    /**
+     * type comes with home page which means it is 'COMPANY' or 'JOB_SEER'
+     */
     try {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);

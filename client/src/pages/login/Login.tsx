@@ -144,11 +144,11 @@ const Login = () => {
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>
-              <div className='flex items-center justify-center my-4 flex-col '>
-                <div className='cursor-pointer' onClick={googleBtnOnClick}>
+              <div className='flex items-center justify-center my-4 flex-col' onClick={googleBtnOnClick}>
+                <div className='cursor-pointer' >
                   <FcGoogle size={50}/>
                 </div>
-                <p className='text-sm'>Login with google</p>
+                <p className='text-sm cursor-pointer'>Login with google</p>
               </div>
             </form>
           </div>
