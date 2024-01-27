@@ -11,8 +11,12 @@ import {signInFailure, signInStart, signInSuccess} from "../../redux/user/UserSl
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/Store.ts";
 import Cookies from "js-cookie";
-import {loginUser} from "../../service/API_Service.ts";
+import {loginUser, loginWithGoogle} from "../../service/API_Service.ts";
 import {TOKEN} from "../../util/TOKEN.ts";
+import {FcGoogle} from "react-icons/fc";
+import {app} from "../../firebase/Firebase.ts";
+import {GoogleAuthProvider, getAuth, signInWithPopup} from "firebase/auth";
+
 
 const Login = () => {
   const [formData, setFormData] = useState<{ email: string, password: string }>({email: "", password: ""});
@@ -74,6 +78,30 @@ const Login = () => {
     }
   }
 
+  const googleBtnOnClick = async () => {
+    try {
+      dispatch(signInStart());
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
+      const result = await signInWithPopup(auth, provider);
+      const formData = {
+        fName: result.user.displayName,
+        email: result.user.email,
+        avatar: result.user.photoURL,
+      }
+      const userData = await loginWithGoogle(formData);
+      Cookies.set(TOKEN, userData.accessToken);
+      dispatch(signInSuccess(userData.user));
+      if (userData.user.userType === "COMPANY") {
+        navigate('/company');
+      } else if (userData.user.userType === "JOB_SEEKER") {
+        navigate('/job-seeker');
+      }
+    } catch (er) {
+      console.log(er);
+      dispatch(signInFailure(error));
+    }
+  }
   return (
     <div className="flex px-4 py-2 pd:mx-8 lg:px-16 min-h-[80vh] md:min-h-[100vh]">
       <div className="left flex flex-col md:w-[50vw]">
@@ -97,7 +125,6 @@ const Login = () => {
                 icon={<MdEmail/>}
                 onChange={handleOnChange}
                 optional={true}
-
               />
               <Input
                 name={'password'}
@@ -117,6 +144,12 @@ const Login = () => {
               <button onClick={loginBtnOnClick} className="bg-blue-900  p-4 text-white rounded-full mt-2">
                 Login
               </button>
+              <div className='flex items-center justify-center my-4 flex-col '>
+                <div className='cursor-pointer' onClick={googleBtnOnClick}>
+                  <FcGoogle size={50}/>
+                </div>
+                <p className='text-sm'>Login with google</p>
+              </div>
             </form>
           </div>
         </div>

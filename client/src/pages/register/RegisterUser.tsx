@@ -10,6 +10,12 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {signUp} from "../../service/user/AuthService.ts";
 import InputControl from "../../components/input/InputControl.tsx";
 import {useEffect} from "react";
+import {FcGoogle} from "react-icons/fc";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {app} from "../../firebase/Firebase.ts";
+import {loginWithGoogle, signWithGoogle} from "../../service/API_Service.ts";
+import Cookies from "js-cookie";
+import {TOKEN} from "../../util/TOKEN.ts";
 
 
 const schema = z.object({
@@ -39,7 +45,7 @@ const RegisterUser = () => {
   const location = useLocation();
   const type = location.state?.type;
   useEffect(() => {
-    if(!type){
+    if (!type) {
       navigate('/');
     }
   }, []);
@@ -54,6 +60,28 @@ const RegisterUser = () => {
       data.userType = "JOB_SEEKER";
       const userId = await signUp(data);
       navigate('job-seeker', {state: {id: userId}})
+    }
+  }
+  const googleBtnOnClick = async () => {
+    console.log(type)
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
+      const result = await signInWithPopup(auth, provider);
+      const formData = {
+        fName: result.user.displayName,
+        email: result.user.email,
+        avatar: result.user.photoURL,
+        userType: type
+      }
+      const userId = await signWithGoogle(formData);
+      if (type === 'COMPANY') {
+        navigate('company', {state: {id: userId}})
+      } else if (type === 'JOB_SEEKER') {
+        navigate('job-seeker', {state: {id: userId}})
+      }
+    } catch (er) {
+      console.log("couldn't sign in google", er);
     }
   }
   return (
@@ -112,6 +140,12 @@ const RegisterUser = () => {
                         className="bg-blue-900 mx-2 md:p-4 text-white rounded-full m-6">
                   {isLoading ? "Registering..." : "Register"}
                 </button>
+                <div className='flex items-center justify-center my-4 flex-col '>
+                  <div className='cursor-pointer' onClick={googleBtnOnClick}>
+                    <FcGoogle size={50}/>
+                  </div>
+                  <p className='text-sm'>Register with google</p>
+                </div>
               </div>
               {errors.root && (<div className='text-red-500'>{errors.root.message}</div>)}
             </form>

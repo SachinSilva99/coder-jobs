@@ -17,11 +17,45 @@ export const userSignUp = tryCatch(async (req: Request, res: Response) => {
   const response: StandardResponse<string> = {statusCode: 201, msg: "sign up successful", data: saveUser._id}
   res.status(200).send(response);
 });
+export const loginWithGoogle = tryCatch(async (req: Request, res: Response) => {
+  const user = await UserModel.findOne({email: req.body.email, deleteStatus: false});
+  if (!user) {
+    throw new NotFoundError(`${req.body.email} not found!`);
+  }
+  const token = jwt.sign({id: user._id}, process.env.SECRET_KEY as Secret);
+  user.password = "";
+  const resBody = {
+    user: user,
+    accessToken: token
+  }
+  const response: StandardResponse<any> = {statusCode: 200, data: resBody, msg: "Access"};
+  res.status(200).send(response);
+});
+export const signUpWithGoogle = tryCatch(async (req: Request, res: Response) => {
+  const generatedPassword = Math.random().toString(36).slice(-8);
+  const hashedPassword = await bcrypt.hash(generatedPassword, 10);
+  const newUser = new UserModel({
+    username:
+      req.body.fName.split(" ")[0].toLowerCase() +
+      Math.random().toString(36).slice(-8),
+    email: req.body.email,
+    password: hashedPassword,
+    avatar: req.body.avatar,
+    fName: req.body.fName,
+    userType: req.body.userType
+  });
+  const savedNewUser = await newUser.save();
+  savedNewUser.password = "";
+  const response: StandardResponse<string> = {statusCode: 201, msg: "sign up successful", data: savedNewUser._id}
+  res.status(200).send(response);
+});
+
+
 
 
 export const login = tryCatch(async (req: Request, res: Response, next: express.NextFunction) => {
     const {email, password} = req.body;
-  console.log(req.body)
+    console.log(req.body)
     const user = await UserModel.findOne({email: email, deleteStatus: false});
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);

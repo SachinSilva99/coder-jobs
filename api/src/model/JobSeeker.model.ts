@@ -9,12 +9,13 @@ const jobSeekerSchema = new Schema<IJobSeeker>({
   avatar: {type: String, required: true},
   gender: {type:String, required:true},
   jobSeekerContact: {type: String, required: true},
-  currentPosition: {type: String, required: true},
-  about: {type: String, required: true},
+  currentPosition: {type: String},
+  about: {type: String},
   user: {type: Schema.Types.ObjectId, required: true, ref: "User", unique:true},
   deleteStatus:{type:Boolean, default:false}
 }, {timestamps: true});
 
 const JobSeekerModel = model<IJobSeeker>("JobSeeker", jobSeekerSchema);
 export default JobSeekerModel;
+
 

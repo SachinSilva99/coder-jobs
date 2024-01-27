@@ -6,10 +6,9 @@ const apiClient =  axios.create({
   baseURL: import.meta.env.VITE_API_URL_BASE,
 });
 
-apiClient.interceptors.request.use(function (config) {
-  config.headers.Authorization =  Cookies.get(TOKEN);
-  console.log('hehe worked')
-  return config;
+apiClient.interceptors.request.use(function (request) {
+  request.headers.Authorization =  Cookies.get(TOKEN);
+  return request;
 }, function (error) {
   return Promise.reject(error);
 });
